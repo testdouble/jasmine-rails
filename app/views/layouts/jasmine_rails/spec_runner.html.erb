@@ -17,15 +17,17 @@ config = Jasmine::Config.new
   <head>
     <!-- jasmine -->
     <% Jasmine::Core.css_files.each do |f| %>
-      <link href="<%="#{url_for}css/#{f}"%>" type="text/css" rel="stylesheet">
+      <%= stylesheet_link_tag url_for+"lib/css/"+f %>
     <% end %>
 
     <% Jasmine::Core.js_files.map do |f| %>
-      <script type="text/javascript" src="<%="#{url_for}lib/#{f}"%>"></script>
+      <%= javascript_include_tag url_for+"lib/js/"+f %>
     <% end %>
 
     <!-- css -->
-    <%= stylesheet_link_tag    "application" %>
+    <% Jasmine::Config.new.css_files.each do |f| %>
+      <%=stylesheet_link_tag url_for+"css"+f%>
+    <% end %>
 
     <!-- sources -->    
     <%= javascript_include_tag "application" %>
