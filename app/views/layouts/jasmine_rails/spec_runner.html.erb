@@ -5,16 +5,14 @@
 # see this thread on the jasmine group: http://groups.google.com/group/jasmine-js/browse_thread/thread/c9c30854ecfd915d
 require 'jasmine-core'
 require 'jasmine'
-
-config = Jasmine::Config.new
-# (config.css_files || [])
-
-
-
 %>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+    <title>Jasmine suite</title>
+    <link rel="shortcut icon" type="image/png" href="<%=url_for%>__JASMINE_ROOT__/images/jasmine_favicon.png">
+    
     <!-- jasmine -->
     <% Jasmine::Core.css_files.each do |f| %>
       <%= stylesheet_link_tag url_for+"lib/css/"+f %>
@@ -24,17 +22,7 @@ config = Jasmine::Config.new
       <%= javascript_include_tag url_for+"lib/js/"+f %>
     <% end %>
 
-    <!-- css -->
-    <% Jasmine::Config.new.css_files.each do |f| %>
-      <%= stylesheet_link_tag url_for+"css"+f%>
-    <% end %>
-
-    <!-- sources -->    
-    <% Jasmine::Config.new.js_files.each do |f| %>
-      <%= javascript_include_tag url_for+"js"+f%>
-    <% end %>
-    
-    <!-- executing runner -->
+    <!-- executing jasmine's runner -->
     <script type="text/javascript">
       var jsApiReporter;
       (function() {
@@ -65,6 +53,16 @@ config = Jasmine::Config.new
 
       })();
     </script>
+
+    <!-- user's css -->
+    <% Jasmine::Config.new.css_files.each do |f| %>
+      <%= stylesheet_link_tag url_for+"css"+f%>
+    <% end %>
+
+    <!-- user's sources -->
+    <% Jasmine::Config.new.js_files.each do |f| %>
+      <%= javascript_include_tag url_for+"js"+f%>
+    <% end %>
   </head>
   <body>
     <div id="jasmine_content"></div>

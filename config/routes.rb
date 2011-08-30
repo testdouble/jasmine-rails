@@ -23,5 +23,5 @@ JasmineRails::Engine.routes.draw do
     
   mount Rack::File.new(jasmine_config.spec_dir), :at => "js/"+jasmine_config.spec_path
   mount Rack::File.new(jasmine_config.project_root), :at => jasmine_config.root_path
-  
+  mount Rack::File.new(Jasmine.root), :at => '/__JASMINE_ROOT__'
 end
