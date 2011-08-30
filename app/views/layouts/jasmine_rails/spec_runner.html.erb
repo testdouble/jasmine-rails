@@ -20,10 +20,9 @@ css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
       </style>
     <% end %>
 
-    <% jasmine_files.each do |jasmine_file| %>
-      <script type="text/javascript" data-path="<%=jasmine_file%>">
-        <%= raw File.read(jasmine_file) %>
-      </script>
+
+    <% Jasmine::Core.js_files.map do |f| %>
+      <script type="text/javascript" src="lib/#{f}"></script>
     <% end %>
 
     <!-- css -->
