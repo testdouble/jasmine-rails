@@ -11,8 +11,17 @@ JasmineRails::Engine.routes.draw do
     mount Rack::File.new("/#{Jasmine::Core.path}/#{f}"), :at => "lib/css/#{f}"
   end
   
-  Jasmine::Config.new.css_files.each do |f|
+  jasmine_config = Jasmine::Config.new
+
+  jasmine_config.css_files.each do |f|
     mount Rack::File.new("/#{Rails.root}/#{f}"), :at => "css/#{f}"
   end
+
+  jasmine_config.js_files.each do |f|
+    mount Rack::File.new("/#{Rails.root}/#{f}"), :at => "js/#{f}"
+  end
+    
+  mount Rack::File.new(jasmine_config.spec_dir), :at => "js/"+jasmine_config.spec_path
+  mount Rack::File.new(jasmine_config.project_root), :at => jasmine_config.root_path
   
 end

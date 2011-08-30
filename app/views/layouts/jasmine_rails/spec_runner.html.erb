@@ -26,16 +26,12 @@ config = Jasmine::Config.new
 
     <!-- css -->
     <% Jasmine::Config.new.css_files.each do |f| %>
-      <%=stylesheet_link_tag url_for+"css"+f%>
+      <%= stylesheet_link_tag url_for+"css"+f%>
     <% end %>
 
     <!-- sources -->    
-    <%= javascript_include_tag "application" %>
-    
-    <% config.spec_files_full_paths.each do |path| %>
-      <script type="text/javascript" data-path="<%=path%>">
-        <%= raw(path.end_with?('.coffee') ? CoffeeScript.compile(File.read(path)) : File.read(path)) %>
-      </script>
+    <% Jasmine::Config.new.js_files.each do |f| %>
+      <%= javascript_include_tag url_for+"js"+f%>
     <% end %>
     
     <!-- executing runner -->
