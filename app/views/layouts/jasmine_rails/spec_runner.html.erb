@@ -9,6 +9,9 @@ require 'jasmine'
 jasmine_path = Jasmine::Core.path
 jasmine_files = Jasmine::Core.js_files.map {|f| "/#{jasmine_path}/#{f}"}
 css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
+
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -22,7 +25,7 @@ css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
 
 
     <% Jasmine::Core.js_files.map do |f| %>
-      <script type="text/javascript" src="lib/<%=f%>"></script>
+      <script type="text/javascript" src="<%="#{url_for}lib/#{f}"%>"></script>
     <% end %>
 
     <!-- css -->
