@@ -6,9 +6,8 @@
 require 'jasmine-core'
 require 'jasmine'
 
-jasmine_path = Jasmine::Core.path
-jasmine_files = Jasmine::Core.js_files.map {|f| "/#{jasmine_path}/#{f}"}
-css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
+config = Jasmine::Config.new
+# (config.css_files || [])
 
 
 
@@ -17,12 +16,9 @@ css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
 <html>
   <head>
     <!-- jasmine -->
-    <% css_files.each do |css_file| %>
-      <style type="text/css" media="screen" data-path="<%=css_file%>">
-        <%= raw File.read(css_file) %>
-      </style>
+    <% Jasmine::Core.css_files.each do |f| %>
+      <link href="<%="#{url_for}css/#{f}"%>" type="text/css" rel="stylesheet">
     <% end %>
-
 
     <% Jasmine::Core.js_files.map do |f| %>
       <script type="text/javascript" src="<%="#{url_for}lib/#{f}"%>"></script>
@@ -34,7 +30,7 @@ css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
     <!-- sources -->    
     <%= javascript_include_tag "application" %>
     
-    <% Jasmine::Config.new.spec_files_full_paths.each do |path| %>
+    <% config.spec_files_full_paths.each do |path| %>
       <script type="text/javascript" data-path="<%=path%>">
         <%= raw(path.end_with?('.coffee') ? CoffeeScript.compile(File.read(path)) : File.read(path)) %>
       </script>
