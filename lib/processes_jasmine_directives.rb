@@ -27,8 +27,14 @@ class ProcessesJasmineDirectives
     end
     
     define_method "require_user_#{asset_type}" do
-      Jasmine::Config.new.send("#{asset_type}_files").each do |f|
-        context.require_asset "#{Rails.root}#{f}"
+      config = Jasmine::Config.new
+      config.send("#{asset_type}_files").each do |f|
+        asset_file = if f.include?(config.spec_path)
+          f.gsub(/#{config.spec_path}/,config.spec_dir)
+        else
+          "#{Rails.root}#{f}"
+        end
+        context.require_asset asset_file
       end
     end
   end

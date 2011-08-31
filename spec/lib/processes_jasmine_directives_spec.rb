@@ -4,14 +4,18 @@ require 'gimme'
 require 'jasmine'
 
 describe ProcessesJasmineDirectives do
+  let(:target_object) { ProcessesJasmineDirectives.new }
+  let(:context_double) { gimme(Sprockets::Context) }
+
+  before(:each) do
+    Rails.stub(:root => "/some/path/to/where/rails/is/")
+    target_object.stub(:context => context_double) 
+  end
+  
   ["css", "js"].each do |asset_type|
     describe "requiring Jasmine #{asset_type}" do
       Jasmine::Core.send("#{asset_type}_files").each do |f|
         let(:asset_file) {"/#{Jasmine::Core.path}/#{f}"}
-        let(:context_double) {gimme(Sprockets::Context)}
-        let(:target_object) {ProcessesJasmineDirectives.new}
-
-        before {target_object.stub(:context => context_double)}
 
         it "requires Jasmine's #{f}" do
           target_object.process_require_jasmine_directive(asset_type)
@@ -25,20 +29,35 @@ describe ProcessesJasmineDirectives do
           let(:jasmine_config) { gimme_next(Jasmine::Config) }
           let(:context_double) { gimme(Sprockets::Context) }
           let(:target_object) { ProcessesJasmineDirectives.new }
-
+          
           before(:each) do
-            Rails.stub(:root => "/some/path/to/where/rails/is/")
-            @asset_file = "#{Rails.root}#{f}" 
+            give(jasmine_config).spec_path { "__spec__" }
+            give(jasmine_config).spec_dir { "path/to" }
             give(jasmine_config).send("#{asset_type}_files") { user_asset_files }
             target_object.stub(:context => context_double)
           end
           
           it "requires user's #{f}" do
             target_object.process_require_jasmine_directive(asset_type)
-            verify(context_double).require_asset(@asset_file)
+            verify(context_double).require_asset("#{Rails.root}#{f}")
           end
         end
       end
+      
+    end 
+  end
+  
+  describe "requiring a user's spec files" do
+    it "converts the jasmine spec path to the spec dir" do
+      config = gimme_next(Jasmine::Config)
+      give(config).send("js_files") { ["my/__spec__/some_spec.js"] }
+      give(config).spec_path { "__spec__" }
+      give(config).spec_dir { "path/to" }
+      
+      target_object.process_require_jasmine_directive("js")
+      
+      verify(context_double).require_asset("my/path/to/some_spec.js")
     end
   end
+  
 end
