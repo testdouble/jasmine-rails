@@ -3,14 +3,30 @@ require 'jasmine-core'
 
 class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
   
-  def process_require_jasmine_directive
+  def process_require_jasmine_directive(asset_type)
     jasmine_config = Jasmine::Config.new
     
-    require_jasmine_javascript
-    require_user_javascript(jasmine_config)
+    if asset_type == "css"
+      require_jasmine_css
+    else
+      require_jasmine_javascript
+      require_user_javascript(jasmine_config)
+    end
   end
   
   private
+  
+  def require_jasmine_css
+    Jasmine::Core.css_files.each do |f|
+      context.require_asset "/#{Jasmine::Core.path}/#{f}"
+    end
+  end
+  
+  def require_user_css
+    Jasmine::Config.new.css_files.each do |f|
+      require_asset "#{Rails.root}#{f}"
+    end
+  end
   
   def require_jasmine_javascript
     Jasmine::Core.js_files.map do |f|
@@ -34,5 +50,5 @@ class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
   
 end
 
-# Rails.application.assets.unregister_preprocessor 'application/javascript' Sprockets::DirectiveProcessor
 Rails.application.assets.register_preprocessor 'application/javascript', ProcessesJasmineDirectives
+Rails.application.assets.register_preprocessor 'text/css', ProcessesJasmineDirectives
