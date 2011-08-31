@@ -1,26 +1,12 @@
-<%
-#This file is a controlled mess to provide a page you can load with your browser when 
-# JHW doesn't provide sufficient console feedback.
-# at some point the jasmine-gem will support Rails 3.1 / assets / Coffee. 
-# see this thread on the jasmine group: http://groups.google.com/group/jasmine-js/browse_thread/thread/c9c30854ecfd915d
-require 'jasmine-core'
-require 'jasmine'
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
     <title>Jasmine suite</title>
     <link rel="shortcut icon" type="image/png" href="<%=url_for%>__JASMINE_ROOT__/images/jasmine_favicon.png">
-    
-    <!-- jasmine -->
-    <% Jasmine::Core.css_files.each do |f| %>
-      <%= stylesheet_link_tag url_for+"lib/css/"+f %>
-    <% end %>
 
-    <% Jasmine::Core.js_files.map do |f| %>
-      <%= javascript_include_tag url_for+"lib/js/"+f %>
-    <% end %>
+    <%= stylesheet_link_tag "jasmine_rails/application" %>
+    <%= javascript_include_tag "jasmine_rails/application" %>
 
     <!-- executing jasmine's runner -->
     <script type="text/javascript">
@@ -53,14 +39,6 @@ require 'jasmine'
 
       })();
     </script>
-
-    <!-- user's css -->
-    <% Jasmine::Config.new.css_files.each do |f| %>
-      <%= stylesheet_link_tag url_for+"css"+f%>
-    <% end %>
-
-    <!-- user's sources -->
-    <%= javascript_include_tag "jasmine_rails/application" %>
   </head>
   <body>
     <div id="jasmine_content"></div>
