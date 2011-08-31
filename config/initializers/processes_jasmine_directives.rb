@@ -39,7 +39,7 @@ class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
       context.require_asset resolve_user_javascript_path(file_path,jasmine_config)
     end
   end
-  
+  # /js/__spec__/apple_spec.js
   def resolve_user_javascript_path(file_path,config)
     if file_path.include? config.spec_path
       file_path.gsub(/#{config.spec_path}/,config.spec_dir)
