@@ -60,9 +60,7 @@ require 'jasmine'
     <% end %>
 
     <!-- user's sources -->
-    <% Jasmine::Config.new.js_files.each do |f| %>
-      <%= javascript_include_tag url_for+"js"+f%>
-    <% end %>
+    <%= javascript_include_tag "jasmine_rails/application" %>
   </head>
   <body>
     <div id="jasmine_content"></div>
