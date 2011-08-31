@@ -4,20 +4,4 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jasmine_rails/jasmine_libs
-<% 
-require 'jasmine'
-
-def resolve_asset_path(file_path,config)
-  if file_path.include? config.spec_path
-    file_path.gsub(/#{config.spec_path}/,config.spec_dir)
-  else 
-    "#{Rails.root}#{file_path}"
-  end  
-end
-
-jasmine_config = Jasmine::Config.new
-jasmine_config.js_files.each do |f| 
-  require_asset resolve_asset_path(f,jasmine_config)
-end
-%>
+//= require_jasmine 
