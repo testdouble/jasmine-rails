@@ -1,6 +1,7 @@
 require 'jasmine-core'
+require 'sprockets/directive_processor'
 
-class ProcessesJasmineDirectives
+class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
   ASSET_TYPES = ["css","js"]
   
   def process_require_jasmine_directive(asset_type)

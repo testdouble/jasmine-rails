@@ -2,9 +2,10 @@ require 'processes_jasmine_directives'
 require 'sprockets/context'
 require 'gimme'
 require 'jasmine'
+require 'tempfile'
 
 describe ProcessesJasmineDirectives do
-  let(:target_object) { ProcessesJasmineDirectives.new }
+  let(:target_object) { ProcessesJasmineDirectives.new(__FILE__) }
   let(:context_double) { gimme(Sprockets::Context) }
   let(:jasmine_config) { gimme_next(Jasmine::Config) }
 
