@@ -6,6 +6,7 @@ require 'jasmine'
 describe ProcessesJasmineDirectives do
   let(:target_object) { ProcessesJasmineDirectives.new }
   let(:context_double) { gimme(Sprockets::Context) }
+  let(:jasmine_config) { gimme_next(Jasmine::Config) }
 
   before(:each) do
     Rails.stub(:root => "/some/path/to/where/rails/is/")
@@ -25,16 +26,11 @@ describe ProcessesJasmineDirectives do
       
       describe "requiring user's #{asset_type}" do        
         user_asset_files = ["foo_asset", "bar_asset"]
-        user_asset_files.each do |f|
-          let(:jasmine_config) { gimme_next(Jasmine::Config) }
-          let(:context_double) { gimme(Sprockets::Context) }
-          let(:target_object) { ProcessesJasmineDirectives.new }
-          
+        user_asset_files.each do |f|          
           before(:each) do
-            give(jasmine_config).spec_path { "__spec__" }
+            give(jasmine_config).spec_path { "__spook__" }
             give(jasmine_config).spec_dir { "path/to" }
             give(jasmine_config).send("#{asset_type}_files") { user_asset_files }
-            target_object.stub(:context => context_double)
           end
           
           it "requires user's #{f}" do
@@ -49,10 +45,9 @@ describe ProcessesJasmineDirectives do
   
   describe "requiring a user's spec files" do
     it "converts the jasmine spec path to the spec dir" do
-      config = gimme_next(Jasmine::Config)
-      give(config).send("js_files") { ["my/__spec__/some_spec.js"] }
-      give(config).spec_path { "__spec__" }
-      give(config).spec_dir { "path/to" }
+      give(jasmine_config).send("js_files") { ["my/__spook__/some_spec.js"] }
+      give(jasmine_config).spec_path { "__spook__" }
+      give(jasmine_config).spec_dir { "path/to" }
       
       target_object.process_require_jasmine_directive("js")
       
