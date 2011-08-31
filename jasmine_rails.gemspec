@@ -18,4 +18,9 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.1.0"
   s.add_dependency "jasmine"
   s.add_dependency "jasmine-headless-webkit"
+  
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "gimme"
+  s.add_development_dependency "growl_notify"
 end

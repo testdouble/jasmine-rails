@@ -2,12 +2,12 @@ require 'jasmine'
 require 'jasmine-core'
 
 class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
-  
   def process_require_jasmine_directive(asset_type)
     jasmine_config = Jasmine::Config.new
     
     if asset_type == "css"
       require_jasmine_css
+      require_user_css(jasmine_config)
     else
       require_jasmine_javascript
       require_user_javascript(jasmine_config)
@@ -22,8 +22,8 @@ class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
     end
   end
   
-  def require_user_css
-    Jasmine::Config.new.css_files.each do |f|
+  def require_user_css(config)
+    config.css_files.each do |f|
       require_asset "#{Rails.root}#{f}"
     end
   end
