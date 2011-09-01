@@ -1,44 +1,13 @@
-<%
-#This file is a controlled mess to provide a page you can load with your browser when 
-# JHW doesn't provide sufficient console feedback.
-# at some point the jasmine-gem will support Rails 3.1 / assets / Coffee. 
-# see this thread on the jasmine group: http://groups.google.com/group/jasmine-js/browse_thread/thread/c9c30854ecfd915d
-require 'jasmine-core'
-require 'jasmine'
-
-jasmine_path = Jasmine::Core.path
-jasmine_files = Jasmine::Core.js_files.map {|f| "/#{jasmine_path}/#{f}"}
-css_files = Jasmine::Core.css_files.map {|f| "/#{jasmine_path}/#{f}"}
-%>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <!-- jasmine -->
-    <% css_files.each do |css_file| %>
-      <style type="text/css" media="screen" data-path="<%=css_file%>">
-        <%= raw File.read(css_file) %>
-      </style>
-    <% end %>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+    <title>Jasmine suite</title>
 
-    <% jasmine_files.each do |jasmine_file| %>
-      <script type="text/javascript" data-path="<%=jasmine_file%>">
-        <%= raw File.read(jasmine_file) %>
-      </script>
-    <% end %>
+    <%= stylesheet_link_tag "jasmine_rails/application" %>
+    <%= javascript_include_tag "jasmine_rails/application" %>
 
-    <!-- css -->
-    <%= stylesheet_link_tag    "application" %>
-
-    <!-- sources -->    
-    <%= javascript_include_tag "application" %>
-    
-    <% Jasmine::Config.new.spec_files_full_paths.each do |path| %>
-      <script type="text/javascript" data-path="<%=path%>">
-        <%= raw(path.end_with?('.coffee') ? CoffeeScript.compile(File.read(path)) : File.read(path)) %>
-      </script>
-    <% end %>
-    
-    <!-- executing runner -->
+    <!-- executing jasmine's runner -->
     <script type="text/javascript">
       var jsApiReporter;
       (function() {
