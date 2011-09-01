@@ -7,11 +7,11 @@ require "jasmine_rails/version"
 Gem::Specification.new do |s|
   s.name        = "jasmine-rails"
   s.version     = JasmineRails::VERSION
-  s.authors     = ["Justin Searls", "Mark Van Holstyn"]
-  s.email       = ["searls@gmail.com","mvanholstyn@gmail.com"]
+  s.authors     = ["Justin Searls", "Mark Van Holstyn", "Cory Flanigan"]
+  s.email       = ["searls@gmail.com","mvanholstyn@gmail.com", "seeflanigan@gmail.com"]
   s.homepage    = "http://github.com/searls/jasmine-rails"
-  s.summary     = "Provides a Jasmine Spec Runner that plays nicely with Rails 3.1 assets and jasmine-headless-webkit"
-  s.description = "Provides a Jasmine Spec Runner that plays nicely with Rails 3.1 assets and jasmine-headless-webkit"
+  s.summary     = "Makes Jasmine easier on Rails 3.1"
+  s.description = "Provides a Jasmine Spec Runner that plays nicely with Rails 3.1 assets and sets up jasmine-headless-webkit"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
