@@ -68,7 +68,9 @@ You'd hopefully see something like:
 
     PASS: 0 tests, 0 failures, 0.001 secs.
 
-If you experience an error, the most likely cause is JavaScript being loaded out of order, or otherwise conflicting with other existing JavaScript in your project. See "Debugging" below.
+I encourage you to explore [jasmine-headless-webkit's documentation](http://johnbintz.github.com/jasmine-headless-webkit/) for ideas about all the cool ways you can use it.
+
+If you experience an error at this point, the most likely cause is JavaScript being loaded out of order, or otherwise conflicting with other existing JavaScript in your project. See "Debugging" below.
 
 ## Running from your browser
 
