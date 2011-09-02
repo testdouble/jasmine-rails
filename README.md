@@ -14,7 +14,7 @@ Install qt for its headless webkit widget. The easiest way (on a Mac) that I've 
 
     brew install qt
     
-But, because the trailblazing capybara-webkit driver has the same dependency, I'd recommend [perusing their documentation](https://github.com/thoughtbot/capybara-webkit) for help installing the qt libs on other platforms.
+for help installing the qt libs on other platforms, the I'd recommend [perusing capybara-webkit driver's documentation](https://github.com/thoughtbot/capybara-webkit), becuse it has the same dependency.
 
 ## Adding the gem
 
