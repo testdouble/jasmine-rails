@@ -14,7 +14,7 @@ Install qt for its headless webkit widget. The easiest way (on a Mac) that I've 
 
     brew install qt
     
-for help installing the qt libs on other platforms, the I'd recommend [perusing capybara-webkit driver's documentation](https://github.com/thoughtbot/capybara-webkit), becuse it has the same dependency.
+For help installing the qt libs on other platforms, the I'd recommend [perusing capybara-webkit driver's documentation](https://github.com/thoughtbot/capybara-webkit), becuse it has the same dependency.
 
 ## Adding the gem
 
@@ -68,11 +68,11 @@ You'd hopefully see something like:
 
     PASS: 0 tests, 0 failures, 0.001 secs.
 
-If you an experience an error, the most likely cause is JavaScript being loaded out of order, or otherwise conflicting with other existing JavaScript in your project. See "Debugging" below.
+If you experience an error, the most likely cause is JavaScript being loaded out of order, or otherwise conflicting with other existing JavaScript in your project. See "Debugging" below.
 
 ## Running from your browser
 
-Just mount jasmine-rails in your routes.rb:
+Just mount jasmine-rails by adding something like this to your routes.rb:
 
     mount JasmineRails::Engine => "/spec-runner"
 
@@ -82,9 +82,11 @@ Now when you run `bundle exec rails s`, and navigate to [http://localhost:3000/s
 
 ### In your browser
 
-In my workflow, I like to work with specs in the command line until I get confused enough to want to debug. At that point, I'll switch to my browser and use either Webkit Inspector or Firebug to figure out what's going on.
+In my workflow, I like to work with specs in the command line until I hit a snag and could benefit from debugging in [Web Inspector](http://www.webkit.org/blog/1091/more-web-inspector-updates/) or [Firebug](http://getfirebug.com/) to figure out what's going on.
 
-In Rails 3.1, you can ask Sprockets to list out all of your scripts in individual `<script>` tags by appending the query param "debug_assets=true". So I'd navigate to [http://localhost:3000/spec-runner?debug_assets=true](http://localhost:3000/spec-runner?debug_assets=true). Seeing each script loaded separately makes debugging much easier for me.
+When debugging, I append the query param "**debug_assets=true**" like so: [http://localhost:3000/spec-runner?debug_assets=true](http://localhost:3000/spec-runner?debug_assets=true). 
+
+This is telling the asset pipeline to include each of your scripts in *individual* `<script>` tags. Seeing each script loaded separately makes debugging much easier for me.
   
 ### From the command line
 
