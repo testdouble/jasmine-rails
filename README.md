@@ -44,7 +44,7 @@ Next, edit the generated `spec/javascripts/support/jasmine.yml` file to ensure t
     stylesheets:
       - "vendor/**/*.css"
       - "lib/**/*.css"
-      - "app/**/*.css
+      - "app/**/*.css"
 
     helpers:
       - "helpers/**/*.{js,coffee}"
