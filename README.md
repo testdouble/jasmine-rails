@@ -76,7 +76,9 @@ If you experience an error at this point, the most likely cause is JavaScript be
 
 Just mount jasmine-rails by adding something like this to your routes.rb:
 
-    mount JasmineRails::Engine => "/spec-runner"
+``` ruby
+mount JasmineRails::Engine => "/specs" unless Rails.env.production?
+```
 
 Now when you run `bundle exec rails s`, and navigate to [http://localhost:3000/spec-runner](http://localhost:3000/spec-runner), you should see a Jasmine spec runner in your browser.
 
