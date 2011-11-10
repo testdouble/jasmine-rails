@@ -80,7 +80,7 @@ Just mount jasmine-rails by adding something like this to your routes.rb:
 mount JasmineRails::Engine => "/specs" unless Rails.env.production?
 ```
 
-Now when you run `bundle exec rails s`, and navigate to [http://localhost:3000/spec-runner](http://localhost:3000/spec-runner), you should see a Jasmine spec runner in your browser.
+Now when you run `bundle exec rails s`, and navigate to [http://localhost:3000/specs](http://localhost:3000/specs), you should see a Jasmine spec runner in your browser.
 
 ## Debugging
 
@@ -88,7 +88,7 @@ Now when you run `bundle exec rails s`, and navigate to [http://localhost:3000/s
 
 In my workflow, I like to work with specs in the command line until I hit a snag and could benefit from debugging in [Web Inspector](http://www.webkit.org/blog/1091/more-web-inspector-updates/) or [Firebug](http://getfirebug.com/) to figure out what's going on.
 
-When debugging, I append the query param "**debug_assets=true**" like so: [http://localhost:3000/spec-runner?debug_assets=true](http://localhost:3000/spec-runner?debug_assets=true). 
+When debugging, I append the query param "**debug_assets=true**" like so: [http://localhost:3000/specs?debug_assets=true](http://localhost:3000/specs?debug_assets=true). 
 
 This is telling the asset pipeline to include each of your scripts in *individual* `<script>` tags. Seeing each script loaded separately makes debugging much easier for me.
   
