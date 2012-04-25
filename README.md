@@ -52,7 +52,7 @@ Next, edit the generated `spec/javascripts/support/jasmine.yml` file to ensure t
     spec_files:
       - "**/*[Ss]pec.{js,coffee}"
 
-    src_dir:
+    src_dir: app/assets/javascripts
 
     spec_dir: spec/javascripts
 
