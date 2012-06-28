@@ -20,6 +20,7 @@ class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
     
     define_method "require_user_#{asset_type}" do
       config = Jasmine::Config.new
+      context.depend_on Rails.root # reload for any file change
       config.send("#{asset_type}_files").each do |f|
         context.require_asset full_path_for(f,config)
       end
