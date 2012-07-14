@@ -106,19 +106,13 @@ If the tests fail, jasmine-headless-webkit will leave its generated spec runner 
 
 [Guard](https://github.com/guard/guard) is a great tool for triggering spec runs when files change. To use it, you can bundle these gems:
 
-    group :test, :development do
+    group :development do
       ...      
-      gem 'guard-rails-assets'
       gem 'guard-jasmine-headless-webkit'
       ...
     end
 
 In my Guardfile, this configuration is working well for me:
-
-    guard 'rails-assets' do
-      watch(%r{^.*/assets/.+$})
-      watch('config/application.rb')
-    end
 
     spec_location = "spec/javascripts/%s_spec"
 
