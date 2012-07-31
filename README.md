@@ -13,12 +13,12 @@ By bundling this gem and configuring your project, you can expect to:
 Install qt for its headless webkit widget. The easiest way (on a Mac) that I've found is to use [homebrew](https://github.com/mxcl/homebrew):
 
     brew install qt
-    
+
 For help installing the qt libs on other platforms, the I'd recommend [perusing capybara-webkit driver's documentation](https://github.com/thoughtbot/capybara-webkit), becuse it has the same dependency.
 
-## Adding the gem
+## Adding & configuring the gem
 
-Add jasmine-rails to your Gemfile, like so
+First, add jasmine-rails to your Gemfile, like so
 
     group :test, :development do
       gem 'jasmine-rails'
@@ -26,42 +26,55 @@ Add jasmine-rails to your Gemfile, like so
 
 Next, run `bundle install`.
 
-Now, we'll use the jasmine gem to initialize a jasmine.yml configuration file:
+In order to run any specs, you'll need a Jasmine configuration in `spec/javascripts/support/jasmine.yml`. [Here's an example](https://github.com/searls/jasmine-rails/tree/master/spec/dummy/spec/javascripts/support) from this repo's [dummy project](https://github.com/searls/jasmine-rails/tree/master/spec/dummy).
 
-    bundle exec jasmine init
+``` yaml
+src_files:
+ - "application.{js,coffee}"
 
-And remove some files the jasmine gem creates that you won't need:
+stylesheets:
 
-    rm public/javascripts/Player.js public/javascripts/Song.js spec/javascripts/PlayerSpec.js spec/javascripts/helpers/SpecHelper.js lib/tasks/jasmine.rake 
-    
-Next, edit the generated `spec/javascripts/support/jasmine.yml` file to ensure that it will find all your JavaScript sources and specs. The default file is written for Rails <3.1 so it doesn't know about the asset directories. As an example, mine looks like this:
+helpers:
+  - "helpers/**/*.{js,coffee}"
 
-    src_files:
-      - "vendor/**/*.{js,coffee}"
-      - "lib/**/*.{js,coffee}"
-      - "app/**/*.{js,coffee}"
+spec_files:
+  - "**/*[Ss]pec.{js,coffee}"
 
-    stylesheets:
-      - "vendor/**/*.css"
-      - "lib/**/*.css"
-      - "app/**/*.css"
+src_dir: "app/assets/javascripts"
 
-    helpers:
-      - "helpers/**/*.{js,coffee}"
+spec_dir: spec/javascripts
 
-    spec_files:
-      - "**/*[Ss]pec.{js,coffee}"
+asset_paths:
+ - "vendor/assets/javascripts"
+```
 
-    src_dir: app/assets/javascripts
+### Writing asset manifests
 
-    spec_dir: spec/javascripts
+I prefer to have just one asset manifest per project, as the `jasmine.yml` file above suggests. One way to accomplish that is to require your `vendor` (and, if necessary, `lib`) manifests within your application manifest. For an example, check out the repo's [dummy project](https://github.com/searls/jasmine-rails/tree/master/spec/dummy).
+
+Here's `app/assets/javascripts/application.js`
+
+``` javascript
+//= require vendor
+//= require_tree .
+```
+
+And here's `vendor/assets/javascripts/vendor.js` (as referenced on the first line of `application.js` above)
+
+``` javascript
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+```
+
+Assets in gems come along for the ride, as well. Additionally, you can follow a similar scheme to import any JavaScript libs you might reference from a `lib/assets/javascripts/lib.js` manifest file.
 
 ## Running from the command line
 
 If you were to run:
 
     bundle exec jasmine-headless-webkit --color
-    
+
 You'd hopefully see something like:
 
     Running Jasmine specs...
@@ -88,26 +101,24 @@ Now when you run `bundle exec rails s`, and navigate to [http://localhost:3000/s
 
 In my workflow, I like to work with specs in the command line until I hit a snag and could benefit from debugging in [Web Inspector](http://www.webkit.org/blog/1091/more-web-inspector-updates/) or [Firebug](http://getfirebug.com/) to figure out what's going on.
 
-When debugging, I append the query param "**debug_assets=true**" like so: [http://localhost:3000/specs?debug_assets=true](http://localhost:3000/specs?debug_assets=true). 
+[When debugging, if you've disabled the asset pipeline's debug mode in dev/test, you may need to append the query param `?debug_assets=true` like so: [http://localhost:3000/specs?debug_assets=true](http://localhost:3000/specs?debug_assets=true). The asset pipeline will include individual `script` tags for each of your scripts when in debug mode, which migh tmake debugging easier.]
 
-This is telling the asset pipeline to include each of your scripts in *individual* `<script>` tags. Seeing each script loaded separately makes debugging much easier for me.
-  
 ### From the command line
 
-Even though they both read from the same config file, it's certainly possible that your specs will pass in the browser and fail from the command line. In this case, you can try to debug or analyze what's going on by using the "--keep" flag from jasmine-headless-webkit. 
+Even though they both read from the same config file, it's certainly possible that your specs will pass in the browser and fail from the command line. In this case, you can try to debug or analyze what's going on by using the "--keep" flag from jasmine-headless-webkit.
 
 By running:
 
     bundle exec jasmine-headless-webkit --keep
 
-If the tests fail, jasmine-headless-webkit will leave its generated spec runner HTML file persisted in your rails root folder. It'll be named something like "specrunner.48160.html".
+If the tests fail, jasmine-headless-webkit will leave its generated spec runner HTML file persisted in your rails root folder. It'll be named something like "jhw.48160.html".
 
 ## Guard
 
 [Guard](https://github.com/guard/guard) is a great tool for triggering spec runs when files change. To use it, you can bundle these gems:
 
     group :development do
-      ...      
+      ...
       gem 'guard-jasmine-headless-webkit'
       ...
     end
