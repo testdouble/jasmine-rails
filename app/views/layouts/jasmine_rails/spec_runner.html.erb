@@ -2,39 +2,37 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
-    <title>Jasmine suite</title>
+    <title>Jasmine Specs</title>
 
     <%= stylesheet_link_tag "jasmine_rails/application" %>
     <%= javascript_include_tag "jasmine_rails/application" %>
 
     <!-- executing jasmine's runner -->
     <script type="text/javascript">
-      var jsApiReporter;
       (function() {
-        var jasmineEnv = jasmine.getEnv();
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
 
-        jsApiReporter = new jasmine.JsApiReporter();
-        var trivialReporter = new jasmine.TrivialReporter();
+      var htmlReporter = new jasmine.HtmlReporter();
 
-        jasmineEnv.addReporter(jsApiReporter);
-        jasmineEnv.addReporter(trivialReporter);
+      jasmineEnv.addReporter(htmlReporter);
 
-        jasmineEnv.specFilter = function(spec) {
-          return trivialReporter.specFilter(spec);
-        };
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
 
-        var currentWindowOnload = window.onload;
+      var currentWindowOnload = window.onload;
 
-        window.onload = function() {
-          if (currentWindowOnload) {
-            currentWindowOnload();
-          }
-          execJasmine();
-        };
-
-        function execJasmine() {
-          jasmineEnv.execute();
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
         }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
 
       })();
     </script>
