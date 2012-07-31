@@ -1,4 +1,5 @@
-require "jasmine_rails/engine" ##<- TODO why is this here?
+require "jasmine_rails/engine"
+require "jasmine_rails/jhw_adapter"
 
 module JasmineRails
 end
