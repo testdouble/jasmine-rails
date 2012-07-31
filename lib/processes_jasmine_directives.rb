@@ -2,38 +2,23 @@ require 'jasmine-core'
 require 'sprockets/directive_processor'
 
 class ProcessesJasmineDirectives < Sprockets::DirectiveProcessor
-  ASSET_TYPES = ["css","js"]
-  
   def process_require_jasmine_directive(asset_type)
-    return unless ASSET_TYPES.include?(asset_type)
-     
-    send("require_jasmine_#{asset_type}")
-    send("require_user_#{asset_type}")
-  end
-  
-  ASSET_TYPES.each do |asset_type|
-    define_method "require_jasmine_#{asset_type}" do
-      Jasmine::Core.send("#{asset_type}_files").each do |f|
-        context.require_asset "/#{Jasmine::Core.path}/#{f}"
-      end
-    end
-    
-    define_method "require_user_#{asset_type}" do
-      config = Jasmine::Config.new
-      context.depend_on Rails.root # reload for any file change
-      config.send("#{asset_type}_files").each do |f|
-        context.require_asset full_path_for(f,config)
-      end
+    reset_circular_dependencies
+    context.depend_on(Rails.root)
+    JasmineRails::JhwAdapter.new.send("#{asset_type}_files").each do |full_path|
+      context.depend_on(full_path)
+      context.require_asset(full_path)
     end
   end
-  
-  private 
-  
-  def full_path_for(partial_path,config)
-    if partial_path.include?(config.spec_path)
-      partial_path.gsub(/#{config.spec_path}/,config.spec_dir)
-    else
-      "#{Rails.root}#{partial_path}"
-    end
+
+  private
+
+  def reset_circular_dependencies
+    #This is an internal thread-local variable Sprockets uses.
+    # Unfortunately, it's the only way I've found to avoid
+    # (seemingly) spurious `CircularDependencyError`s from being
+    # raised whenever a file changes.
+    Thread.current[:sprockets_circular_calls] = nil
   end
+
 end
