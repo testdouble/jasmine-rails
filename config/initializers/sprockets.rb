@@ -1,6 +1,6 @@
-require 'processes_jasmine_directives'
-require 'jasmine'
-require 'jasmine-core'
+require 'processes_jasmine_directives' ##<--TODO why is this here?
+require 'jasmine' ##<--TODO why is this here?
+require 'jasmine-core' ##<--TODO why is this here?
 
 assets = Rails.application.assets
 

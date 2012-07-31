@@ -2,3 +2,7 @@
 log/*.log
 pkg/
 *.gem
+.DS_Store
+.jhw-cache
+tmp
+log
