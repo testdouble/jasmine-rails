@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jasmine-rails (0.0.3)
+    jasmine-rails (0.1.0)
       jasmine
       jasmine-headless-webkit
       rails (>= 3.1.0)
