@@ -5,7 +5,7 @@ module JasmineRails
   class JhwAdapter
 
     def initialize
-      @options = Jasmine::Headless::Options.new
+      @options = Jasmine::Headless::Options.new(:jasmine_config => 'config/jasmine.yml')
       @runner = Jasmine::Headless::Runner.new(@options)
       Jasmine::Headless::CacheableAction.enabled = @options[:enable_cache]
     end
