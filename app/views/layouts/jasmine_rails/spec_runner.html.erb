@@ -4,8 +4,8 @@
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
     <title>Jasmine Specs</title>
 
-    <%= stylesheet_link_tag "jasmine_rails/application" %>
-    <%= javascript_include_tag "jasmine_rails/application" %>
+    <%= stylesheet_link_tag *JasmineRails::JhwAdapter.new.css_files %>
+    <%= javascript_include_tag *JasmineRails::JhwAdapter.new.js_files %>
 
     <!-- executing jasmine's runner -->
     <script type="text/javascript">
