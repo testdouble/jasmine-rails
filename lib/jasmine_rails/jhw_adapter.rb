@@ -6,7 +6,7 @@ module JasmineRails
 
     def initialize
       @options = Jasmine::Headless::Options.new
-      @runner = Jasmine::Headless::Runner.new(@options)
+      @runner = instantiate_runner
       Jasmine::Headless::CacheableAction.enabled = @options[:enable_cache]
     end
 
@@ -24,6 +24,16 @@ module JasmineRails
         :only => @options[:files],
         :seed => @options[:seed]
       ).files
+    end
+
+    def instantiate_runner
+      begin
+        Jasmine::Headless::Runner.new(@options)
+      rescue Jasmine::Headless::NoRunnerError
+        require 'fileutils'
+        FileUtils.touch(Jasmine::Headless::Runner::RUNNER)
+        Jasmine::Headless::Runner.new(@options).tap { File.delete(Jasmine::Headless::Runner::RUNNER) }
+      end
     end
   end
 
