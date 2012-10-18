@@ -27,8 +27,13 @@ module JasmineRails
     end
   end
 
+  class DistinctifiedFileList < Jasmine::Headless::FilesList
+    def files
+      required_files.collect { |asset| asset.pathname.to_s }.uniq
+    end
+  end
 
-  class JsFilesList < Jasmine::Headless::FilesList
+  class JsFilesList < DistinctifiedFileList
 
     def self.default_files
       %w{jasmine.js jasmine-html}
@@ -41,7 +46,7 @@ module JasmineRails
 
   end
 
-  class CssFilesList < Jasmine::Headless::FilesList
+  class CssFilesList < DistinctifiedFileList
 
     def self.default_files
       %w{jasmine.css}
