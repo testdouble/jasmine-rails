@@ -26,6 +26,15 @@ module JasmineRails
       ).files
     end
 
+    def asset_paths
+      jasmine_config = YAML.load_file(Jasmine::Headless::Options.new[:jasmine_config])
+      [
+        jasmine_config["src_dir"],
+        jasmine_config["spec_dir"],
+        jasmine_config["asset_paths"]
+      ].flatten
+    end
+
     def instantiate_runner
       begin
         Jasmine::Headless::Runner.new(@options)
