@@ -6,3 +6,5 @@ pkg/
 .jhw-cache
 tmp
 log
+*.sqlite3
+chromedriver.log
