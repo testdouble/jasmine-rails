@@ -1,5 +1,7 @@
 # jasmine-rails gem
 
+[![Build Status](https://secure.travis-ci.org/searls/jasmine-rails.png)](http://travis-ci.org/searls/jasmine-rails)
+
 This project is intended to make it a little easier to integrate [Jasmine](https://github.com/pivotal/jasmine/wiki) into your workflow, particularly if you're working in Rails 3.1 or later. (If you're on earlier versions of Rails, I'd suggest directly using the combination of Pivotal's [jasmine gem](https://github.com/pivotal/jasmine-gem) and [jasmine-headless-webkit](http://johnbintz.github.com/jasmine-headless-webkit/).)
 
 By bundling this gem and configuring your project, you can expect to:
