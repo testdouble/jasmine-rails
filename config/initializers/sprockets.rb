@@ -3,5 +3,5 @@ require 'jasmine-core'
 
 assets = Rails.application.assets
 
-assets.append_path Jasmine::Config.new.spec_dir
+assets.append_path Jasmine.config.spec_path
 assets.append_path Jasmine::Core.path
