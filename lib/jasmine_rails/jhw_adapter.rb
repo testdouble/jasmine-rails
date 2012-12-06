@@ -32,7 +32,7 @@ module JasmineRails
         jasmine_config["src_dir"],
         jasmine_config["spec_dir"],
         jasmine_config["asset_paths"]
-      ].flatten
+      ].flatten.compact
     end
 
     def instantiate_runner
