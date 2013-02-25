@@ -12,7 +12,13 @@ module JasmineRails
     end
 
     def spec_js_files
-      filter_files JasmineRails.spec_dir, JasmineRails.jasmine_config['spec_files']
+      files = filter_files JasmineRails.spec_dir, JasmineRails.jasmine_config['spec_files']
+      if filter = params[:spec].to_s.split.first
+        files = files.select do |file|
+          file.include? filter
+        end
+      end
+      files
     end
 
     private
