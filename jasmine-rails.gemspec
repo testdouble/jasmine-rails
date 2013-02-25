@@ -17,5 +17,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 3.1.0"
   s.add_dependency "jasmine", "~> 1.3"
-  s.add_dependency "jasmine-headless-webkit"
 end
