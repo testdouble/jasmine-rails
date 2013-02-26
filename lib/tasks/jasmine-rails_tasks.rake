@@ -27,6 +27,10 @@ namespace :jasmine do
     app = ActionController::Integration::Session.new(Rails.application)
     app.get '/jasmine', :console => 'true', :spec => ENV['SPEC']
     html = app.response.body
-    File.open(Rails.root.join('spec/tmp/runner.html'), 'w') {|f| f << html}
+    runner_path = Rails.root.join('spec/tmp/runner.html')
+    File.open(runner_path, 'w') {|f| f << html}
+
+    output = `phantomjs #{File.join(File.dirname(__FILE__), 'runner.js')} file://#{runner_path.to_s}`
+    puts output
   end
 end
