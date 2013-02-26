@@ -21,7 +21,7 @@ module JasmineOfflineAssetPaths
   end
 end
 
-namespace :jasmine do
+namespace :spec do
   def run_cmd(cmd)
     puts "$ #{cmd}"
     unless system(cmd)
@@ -30,7 +30,7 @@ namespace :jasmine do
   end
 
   desc "run test with phantomjs"
-  task :phantom => :environment do
+  task :javascript => :environment do
     ActionView::AssetPaths.send :include, JasmineOfflineAssetPaths
     app = ActionController::Integration::Session.new(Rails.application)
     app.get '/jasmine', :console => 'true', :spec => ENV['SPEC']
