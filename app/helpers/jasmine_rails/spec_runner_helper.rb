@@ -10,7 +10,7 @@ module JasmineRails
     def helper_js_files
       files = filter_files JasmineRails.spec_dir, JasmineRails.jasmine_config['helpers']
       if params[:console]
-        files += %{ jasmine-console-reporter.js jasmine-console-boot.js }
+        files += %w{ jasmine-console-reporter.js jasmine-console-boot.js }
         files += filter_files(JasmineRails.spec_dir, JasmineRails.jasmine_config['console_helpers'])
       end
       files
@@ -28,9 +28,12 @@ module JasmineRails
 
     private
     def filter_files(root_dir, patterns)
-      patterns.to_a.collect do |pattern|
+      files = patterns.to_a.collect do |pattern|
         Dir.glob(root_dir.join(pattern))
-      end.flatten.collect {|f| f.gsub(root_dir.to_s + '/', '') }
+      end
+      files = files.flatten
+      files = files.collect {|f| f.gsub(root_dir.to_s + '/', '') }
+      files || []
     end
   end
 end

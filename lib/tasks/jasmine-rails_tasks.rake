@@ -16,18 +16,14 @@ module JasmineOfflineAssetPaths
   end
 end
 
-def capture_output
-  out = StringIO.new
-  $stdout = out
-  $stderr = out
-  yield
-  return out
-ensure
-  $stderr = STDERR
-  $stdout = STDOUT
-end
-
 namespace :jasmine do
+  def run_cmd(cmd)
+    puts "$ #{cmd}"
+    unless system(cmd)
+      abort("Error executing command: #{cmd}")
+    end
+  end
+
   desc "run test with phantomjs"
   task :phantom => :environment do
     tmp_asset_dir = Rails.root.join('spec/tmp/assets')
@@ -41,7 +37,6 @@ namespace :jasmine do
     runner_path = Rails.root.join('spec/tmp/runner.html')
     File.open(runner_path, 'w') {|f| f << html}
 
-    output = `phantomjs #{File.join(File.dirname(__FILE__), 'runner.js')} file://#{runner_path.to_s}`
-    puts output
+    run_cmd "phantomjs #{File.join(File.dirname(__FILE__), 'runner.js')} file://#{runner_path.to_s}"
   end
 end
