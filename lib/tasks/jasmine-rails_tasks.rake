@@ -25,7 +25,7 @@ namespace :jasmine do
 
     ActionView::AssetPaths.send :include, JasmineOfflineAssetPaths
     app = ActionController::Integration::Session.new(Rails.application)
-    app.get '/jasmine'
+    app.get '/jasmine', :spec => ENV['SPEC']
     html = app.response.body
     File.open(Rails.root.join('spec/tmp/runner.html'), 'w') {|f| f << html}
   end
