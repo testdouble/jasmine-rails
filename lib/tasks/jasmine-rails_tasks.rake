@@ -16,6 +16,17 @@ module JasmineOfflineAssetPaths
   end
 end
 
+def capture_output
+  out = StringIO.new
+  $stdout = out
+  $stderr = out
+  yield
+  return out
+ensure
+  $stderr = STDERR
+  $stdout = STDOUT
+end
+
 namespace :jasmine do
   desc "run test with phantomjs"
   task :phantom => :environment do
