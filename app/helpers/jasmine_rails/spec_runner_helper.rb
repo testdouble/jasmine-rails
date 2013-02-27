@@ -8,11 +8,11 @@ module JasmineRails
     end
 
     def helper_js_files
-      files = filter_files JasmineRails.spec_dir, JasmineRails.jasmine_config['helpers']
+      files = []
       if params[:console]
         files += %w{ jasmine-console-reporter.js }
-        files += filter_files(JasmineRails.spec_dir, JasmineRails.jasmine_config['console_helpers'])
       end
+      files += filter_files JasmineRails.spec_dir, JasmineRails.jasmine_config['helpers']
       files
     end
 
