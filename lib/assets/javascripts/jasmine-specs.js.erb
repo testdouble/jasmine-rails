@@ -1,0 +1,6 @@
+// use single "bundle" of js for all specs so asset pipeline can properly filter out duplicates
+<%=
+JasmineRails.spec_files.each do |file|
+  require_asset(file.to_s)
+end
+%>
