@@ -18,4 +18,7 @@ namespace :spec do
 
     run_cmd "phantomjs #{File.join(File.dirname(__FILE__), 'runner.js')} file://#{runner_path.to_s}"
   end
+
+  # alias
+  task :javascripts => :javascript
 end
