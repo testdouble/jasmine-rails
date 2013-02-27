@@ -4,14 +4,11 @@ module JasmineRails
       %w{ jasmine.css }
     end
     def jasmine_js_files
-      %w{ jasmine.js jasmine-html.js boot.js } + helper_js_files
-    end
-
-    def helper_js_files
-      files = []
+      files = %w{ jasmine.js jasmine-html.js }
       if params[:console]
-        files += %w{ jasmine-console-reporter.js }
+        files << 'jasmine-console-reporter.js'
       end
+      files << 'jasmine-boot.js'
       files
     end
 
