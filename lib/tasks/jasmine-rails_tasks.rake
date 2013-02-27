@@ -10,13 +10,14 @@ namespace :spec do
   task :javascript => :environment do
     require 'jasmine_rails/offline_asset_paths'
     ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
+    spec_filter = ENV['SPEC']
     app = ActionController::Integration::Session.new(Rails.application)
-    app.get '/jasmine', :console => 'true', :spec => ENV['SPEC']
+    app.get '/jasmine', :console => 'true', :spec => spec_filter
     html = app.response.body
     runner_path = Rails.root.join('spec/tmp/runner.html')
     File.open(runner_path, 'w') {|f| f << html}
 
-    run_cmd "phantomjs #{File.join(File.dirname(__FILE__), 'runner.js')} file://#{runner_path.to_s}"
+    run_cmd "phantomjs #{File.join(File.dirname(__FILE__), 'runner.js')} file://#{runner_path.to_s}?spec=#{spec_filter}"
   end
 
   # alias
