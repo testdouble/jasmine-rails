@@ -1,6 +1,8 @@
-// use single "bundle" of js for all specs so asset pipeline can properly filter out duplicates
 <%
-JasmineRails.spec_files.each do |file|
-  require_asset(file.to_s)
-end
+  # bundle all jasmine specs using asset pipeline
+  # so asset pipeline can properly filter out duplicates
+  # via dependency tree
+  JasmineRails.spec_files.each do |file|
+    require_asset(file.to_s)
+  end
 %>
