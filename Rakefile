@@ -13,12 +13,6 @@ task :cd_to_dummy do
   Dir.chdir(File.expand_path("../spec/dummy", __FILE__))
 end
 
-require 'jasmine-headless-webkit'
-Jasmine::Headless::Task.new(:dummy_headless_jasmine) do |t|
-  t.colors = true
-  t.keep_on_error = true
-end
-
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:dummy_spec)
 
