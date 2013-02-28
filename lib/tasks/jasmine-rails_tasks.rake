@@ -13,6 +13,7 @@ namespace :spec do
     spec_filter = ENV['SPEC']
     app = ActionController::Integration::Session.new(Rails.application)
     app.get '/jasmine', :console => 'true', :spec => spec_filter
+    JasmineRails::OfflineAssetPaths.disabled = true
     html = app.response.body
     runner_path = Rails.root.join('spec/tmp/runner.html')
     File.open(runner_path, 'w') {|f| f << html}
