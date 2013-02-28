@@ -8,6 +8,7 @@ module JasmineRails
       @options = Jasmine::Headless::Options.new
       @runner = instantiate_runner
       Jasmine::Headless::CacheableAction.enabled = @options[:enable_cache]
+      Jasmine::Headless::FilesList.reset!
     end
 
     def css_files
