@@ -1,3 +1,3 @@
 module JasmineRails
-  VERSION = "0.4.0.sc1"
+  VERSION = "0.4.0.sc2"
 end
