@@ -1,4 +1,4 @@
-require 'jasmine'
+require 'jasmine-core'
 
 module JasmineRails
   class Engine < Rails::Engine
