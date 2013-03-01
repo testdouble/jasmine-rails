@@ -4,7 +4,7 @@ module JasmineRails
       %w{ jasmine.css }
     end
     def jasmine_js_files
-      files = %w{ jasmine.js jasmine-html.js }
+      files = %w{ json2.js jasmine.js jasmine-html.js }
       if params[:console]
         files << 'jasmine-console-reporter.js'
       end
