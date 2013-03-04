@@ -15,7 +15,7 @@ module JasmineRails
         :config => @runner.jasmine_config,
         :only => @options[:files],
         :seed => @options[:seed]
-      ).files
+      ).logical_paths
     end
 
     def js_files
@@ -23,7 +23,7 @@ module JasmineRails
         :config => @runner.jasmine_config,
         :only => @options[:files],
         :seed => @options[:seed]
-      ).files
+      ).logical_paths
     end
 
     def asset_paths
@@ -49,6 +49,10 @@ module JasmineRails
   class DistinctifiedFileList < Jasmine::Headless::FilesList
     def files
       required_files.collect { |asset| asset.pathname.to_s }.uniq
+    end
+
+    def logical_paths
+      files.map { |file| Rails.application.assets[file].logical_path }
     end
   end
 
