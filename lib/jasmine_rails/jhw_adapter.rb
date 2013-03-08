@@ -36,13 +36,11 @@ module JasmineRails
     end
 
     def instantiate_runner
-      begin
-        Jasmine::Headless::Runner.new(@options)
-      rescue Jasmine::Headless::NoRunnerError
-        require 'fileutils'
-        FileUtils.touch(Jasmine::Headless::Runner::RUNNER)
-        Jasmine::Headless::Runner.new(@options).tap { File.delete(Jasmine::Headless::Runner::RUNNER) }
-      end
+      Jasmine::Headless::Runner.new(@options)
+    rescue Jasmine::Headless::NoRunnerError
+      require 'fileutils'
+      FileUtils.touch(Jasmine::Headless::Runner::RUNNER)
+      Jasmine::Headless::Runner.new(@options).tap { File.delete(Jasmine::Headless::Runner::RUNNER) }
     end
   end
 
