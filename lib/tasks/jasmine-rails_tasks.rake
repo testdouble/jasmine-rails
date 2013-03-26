@@ -14,7 +14,7 @@ namespace :spec do
     app = ActionController::Integration::Session.new(Rails.application)
     app.get '/jasmine', :console => 'true', :spec => spec_filter
     JasmineRails::OfflineAssetPaths.disabled = true
-    raise "Error generating jasmine runner: #{app.response.status_message}" unless app.response.status_code == 200
+    raise "Error generating jasmine runner: #{app.response.status_message}" unless app.response.status == 200
     html = app.response.body
     runner_path = Rails.root.join('spec/tmp/runner.html')
     File.open(runner_path, 'w') {|f| f << html}
