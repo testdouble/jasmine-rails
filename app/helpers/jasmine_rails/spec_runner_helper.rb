@@ -1,10 +1,12 @@
+require 'jasmine-core'
+
 module JasmineRails
   module SpecRunnerHelper
     def jasmine_css_files
-      %w{ jasmine.css }
+      Jasmine::Core.css_files
     end
     def jasmine_js_files
-      files = %w{ json2.js jasmine.js jasmine-html.js }
+      files = Jasmine::Core.js_files
       if params[:console]
         files << 'jasmine-console-reporter.js'
       end
