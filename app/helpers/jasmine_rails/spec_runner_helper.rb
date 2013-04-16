@@ -3,6 +3,7 @@ require 'jasmine-core'
 module JasmineRails
   module SpecRunnerHelper
     # return list of css files to include in spec runner
+    # all files are fetched through the Rails asset pipeline
     # includes:
     # * core jasmine css files
     def jasmine_css_files
@@ -10,6 +11,7 @@ module JasmineRails
     end
 
     # return list of javascript files needed for jasmine testsuite
+    # all files are fetched through the Rails asset pipeline
     # includes:
     # * core jasmine libraries
     # * (optional) jasmine-console-reporter.js for CLI output
