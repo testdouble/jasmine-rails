@@ -2,6 +2,13 @@ require "jasmine_rails/engine"
 
 module JasmineRails
   class << self
+    # return the relative path to access the spec runner
+    # for the host Rails application
+    # ex: /jasmine
+    def route_path
+      Rails.application.routes.named_routes[:jasmine_rails].path.spec.to_s
+    end
+
     def spec_dir
       path = jasmine_config['spec_dir'] || 'spec/javascripts'
       Rails.root.join(path)
