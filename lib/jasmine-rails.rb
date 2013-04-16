@@ -36,7 +36,7 @@ module JasmineRails
 
     def filter_files(root_dir, patterns)
       files = patterns.to_a.collect do |pattern|
-        Dir.glob(root_dir.join(pattern))
+        Dir.glob(root_dir.join(pattern)).sort
       end
       files = files.flatten
       files = files.collect {|f| f.gsub(root_dir.to_s + '/', '') }
