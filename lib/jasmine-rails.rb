@@ -7,6 +7,11 @@ module JasmineRails
       Rails.root.join(path)
     end
 
+    # returns list of configured stylesheets from jasmine.yml config
+    def css_files
+      filter_files src_dir, jasmine_config['stylesheets']
+    end
+
     # returns list of all files to be included into the jasmine testsuite
     # includes:
     # * application src_files
