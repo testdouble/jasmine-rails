@@ -1,3 +1,7 @@
+# Rails Asset Patch extension used to write assets out an offline asset directory
+# for future use
+# example:
+#   ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
 module JasmineRails
   module OfflineAssetPaths
     mattr_accessor :disabled
