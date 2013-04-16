@@ -13,6 +13,7 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'coffee-script'
 end
 
 # Declare any dependencies that are still in development here instead of in

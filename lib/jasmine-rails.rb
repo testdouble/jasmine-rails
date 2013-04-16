@@ -7,17 +7,23 @@ module JasmineRails
       Rails.root.join(path)
     end
 
-    # returns list of all files to be included into spec
+    # returns list of all files to be included into the jasmine testsuite
+    # includes:
+    # * application src_files
+    # * spec helpers
+    # * spec_files
     def spec_files
       files = []
       files += filter_files src_dir, jasmine_config['src_files']
+      files += filter_files spec_dir, jasmine_config['helpers']
       files += filter_files spec_dir, jasmine_config['spec_files']
       files
     end
 
-    # iterate over all spec dirs (including subdirectories)
+    # iterate over all directories used as part of the testsuite (including subdirectories)
     def each_spec_dir(&block)
       each_dir spec_dir.to_s, &block
+      each_dir src_dir.to_s, &block
     end
 
     private
