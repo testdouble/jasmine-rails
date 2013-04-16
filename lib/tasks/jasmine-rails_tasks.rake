@@ -12,7 +12,8 @@ namespace :spec do
     ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
     spec_filter = ENV['SPEC']
     app = ActionController::Integration::Session.new(Rails.application)
-    app.get '/jasmine', :console => 'true', :spec => spec_filter
+    path = Rails.application.routes.named_routes[:jasmine_rails].path.spec
+    app.get path, :console => 'true', :spec => spec_filter
     JasmineRails::OfflineAssetPaths.disabled = true
     raise "Error generating jasmine runner: #{app.response.status_message}" unless app.response.status == 200
     html = app.response.body
