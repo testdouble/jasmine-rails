@@ -7,15 +7,12 @@ module JasmineRails
       Rails.root.join(path)
     end
 
-    def jasmine_config
-      jasmine_config ||= begin
-        path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml')
-        YAML.load_file(path)
-      end
-    end
-
+    # returns list of all files to be included into spec
     def spec_files
-      filter_files JasmineRails.spec_dir, JasmineRails.jasmine_config['spec_files']
+      files = []
+      files += filter_files src_dir, jasmine_config['src_files']
+      files += filter_files spec_dir, jasmine_config['spec_files']
+      files
     end
 
     # iterate over all spec dirs (including subdirectories)
@@ -24,6 +21,18 @@ module JasmineRails
     end
 
     private
+
+    def src_dir
+      path = jasmine_config['src_dir'] || ''
+      Rails.root.join(path)
+    end
+
+    def jasmine_config
+      jasmine_config ||= begin
+        path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml')
+        YAML.load_file(path)
+      end
+    end
 
     def each_dir(root, &block)
       yield root
