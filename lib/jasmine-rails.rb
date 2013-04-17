@@ -6,7 +6,16 @@ module JasmineRails
     # for the host Rails application
     # ex: /jasmine
     def route_path
-      Rails.application.routes.named_routes[:jasmine_rails].path.spec.to_s
+      route = Rails.application.routes.named_routes[:jasmine_rails]
+      raise 'JasmineRails::Engine has not been mounted into routes.rb' unless route
+      path = route.path
+
+      # Rails 3.1 support
+      if path.is_a?(String)
+        path
+      else
+        path.spec.to_s
+      end
     end
 
     def spec_dir
