@@ -42,6 +42,13 @@ module JasmineRails
       each_dir src_dir.to_s, &block
     end
 
+    # clear out cached jasmine config file
+    # it would be nice to automatically flush when the jasmine.yml file changes instead
+    # of having this programatic API
+    def reload_jasmine_config
+      @config = nil
+    end
+
     private
 
     def src_dir
@@ -50,7 +57,7 @@ module JasmineRails
     end
 
     def jasmine_config
-      jasmine_config ||= begin
+      @config ||= begin
         path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml')
         YAML.load_file(path)
       end
