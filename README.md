@@ -8,7 +8,7 @@ By bundling this gem and configuring your project, you can expect to:
 
 * Be able to run Jasmine specs in a browser (powered by Rails engine mounted into your application)
 * Be able to run Jasmine specs from the command line (powered by
-  [PhantomJS](http://phantomjs.org/)
+  [PhantomJS](http://phantomjs.org/))
 * Write specs or source in [CoffeeScript](http://jashkenas.github.com/coffee-script/), leveraging the [asset pipeline](http://railscasts.com/episodes/279-understanding-the-asset-pipeline) to pre-process it
 
 ## Prerequisites
@@ -16,6 +16,8 @@ By bundling this gem and configuring your project, you can expect to:
 Install phantomjs in order to run tests headless on the command line. The easiest way (on a Mac) that I've found is to use [homebrew](https://github.com/mxcl/homebrew):
 
     brew install phantomjs
+
+If you're not on a Mac, fear not, as [installing PhantomJS](http://phantomjs.org) is pretty painless for most environments. The important thing is that the binary be somewhere on your PATH.
 
 ## Installation
 
@@ -39,7 +41,7 @@ In order to run any specs, you'll need a Jasmine configuration in `spec/javascri
 
 ``` yaml
 # path to parent directory of src_files
-* relative path from Rails.root
+# relative path from Rails.root
 # defaults to app/assets/javascripts
 src_dir: "app/assets/javascripts"
 
@@ -74,8 +76,8 @@ The jasmine-rails gem *fully* supports the Rails asset pipeline which means you 
 * leverage asset pipeline search paths to include assets from various
   sources/gems
 
-If you choose to use the asset pipeline support, many of the `jasmine.yml`
-configurations become unnecessary and you can rely on the Rails asset
+**If you choose to use the asset pipeline support, many of the `jasmine.yml`
+configurations become unnecessary** and you can rely on the Rails asset
 pipeline to do the hard work of controlling what files are included in
 your testsuite.
 
@@ -113,7 +115,7 @@ If you experience an error at this point, the most likely cause is JavaScript be
 
 ## Running from your browser
 
-Startup your Rails server (ex: `bundle exec rails s`), and navigate to the path you have configured in your routes.rb file (ex: http://localhost:3000/specs).
+Startup your Rails server (ex: `bundle exec rails s`), and navigate to the path you have configured in your routes.rb file (ex: [http://localhost:3000/specs](http://localhost:3000/specs)).
 The Jasmine spec runner should appear and start running your testsuite instantly.
 
 ## Debugging
@@ -126,7 +128,13 @@ In my workflow, I like to work with specs in the command line until I hit a snag
 
 Even though they both read from the same config file, it's certainly possible that your specs will pass in the browser and fail from the command line. In this case, you can try to debug or analyze what's going on loading the headless runner.html file into your browser environment. The generated runner.html file is written out to `spec/tmp/runner.html` after each run.
 
-NOTE: XHR requests for local filesystem are blocked by default for most browsers for security reasons.  To debug local XHR requests (ex: jasmine-jquery fixtures), you will need to enable local filesystem requests in your browser.
+### Ajax / XHRs
 
-Example for Google Chrome:
+As a general rule, Jasmine is designed for unit testing, and as a result real network requests are not appropriate for tests written in Jasmine. (Isolation strategies can include spying on asynchronous libraries and then synchronously testing callback behavior, as [demonstrated in this gist](https://gist.github.com/searls/946704)).
+
+If your application code issues XHR requests during your test run, please note that **XHR requests for the local filesystem** are blocked by default for most browsers for security reasons.  To debug local XHR requests (for example, if you jasmine-jquery fixtures), you will need to enable local filesystem requests in your browser.
+
+Example for Google Chrome (in Mac OS X):
     open -a "Google Chrome" spec/tmp/runner.html --args --allow-file-access-from-files
+
+Again, it's the opinion of the present author that this shouldn't be necessary in any situation but legacy rescue of an existing test suite. With respect specifically to HTML fixtures, please consider [jasmine-fixture](https://github.com/searls/jasmine-fixture) and [my rationale](http://searls.testdouble.com/posts/2011-12-11-jasmine-fixtures.html) for it.

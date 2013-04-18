@@ -1,17 +1,12 @@
+src_dir: "app/assets/javascripts"
+
 src_files:
  - "application.{js,coffee}"
 
-stylesheets:
+spec_dir: spec/javascripts
 
 helpers:
   - "helpers/**/*.{js,coffee}"
 
 spec_files:
   - "**/*[Ss]pec.{js,coffee}"
-
-src_dir: "app/assets/javascripts"
-
-spec_dir: spec/javascripts
-
-asset_paths:
- - "vendor/assets/javascripts"
