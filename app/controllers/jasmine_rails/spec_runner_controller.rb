@@ -1,7 +1,7 @@
 module JasmineRails
   class SpecRunnerController < ApplicationController
     def index
-      params[:debug_assets] = true
+      JasmineRails.reload_jasmine_config
     end
   end
 end

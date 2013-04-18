@@ -4,38 +4,8 @@
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
     <title>Jasmine Specs</title>
 
-    <%= stylesheet_link_tag *JasmineRails::JhwAdapter.new.css_files %>
-    <%= javascript_include_tag *JasmineRails::JhwAdapter.new.js_files %>
-
-    <!-- executing jasmine's runner -->
-    <script type="text/javascript">
-      (function() {
-      var jasmineEnv = jasmine.getEnv();
-      jasmineEnv.updateInterval = 1000;
-
-      var htmlReporter = new jasmine.HtmlReporter();
-
-      jasmineEnv.addReporter(htmlReporter);
-
-      jasmineEnv.specFilter = function(spec) {
-        return htmlReporter.specFilter(spec);
-      };
-
-      var currentWindowOnload = window.onload;
-
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
-        }
-        execJasmine();
-      };
-
-      function execJasmine() {
-        jasmineEnv.execute();
-      }
-
-      })();
-    </script>
+    <%= stylesheet_link_tag *jasmine_css_files %>
+    <%= javascript_include_tag *jasmine_js_files %>
   </head>
   <body>
     <div id="jasmine_content"></div>
