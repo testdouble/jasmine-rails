@@ -21,7 +21,7 @@ end
 
 describe "Jasmine" do
   specify do
-    visit '/specs'
+    visit '/jasmine'
     find('.passingAlert').should have_content "Passing"
   end
 end

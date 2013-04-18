@@ -8,11 +8,13 @@ gemspec
 # Gems used by the dummy application
 gem "jquery-rails"
 gem "sqlite3"
+gem 'coffee-script'
 
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'pry'
 end
 
 # Declare any dependencies that are still in development here instead of in

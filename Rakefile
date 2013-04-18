@@ -9,17 +9,14 @@ APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 Bundler::GemHelper.install_tasks
 
-task :cd_to_dummy do
-  Dir.chdir(File.expand_path("../spec/dummy", __FILE__))
-end
-
-require 'jasmine-headless-webkit'
-Jasmine::Headless::Task.new(:dummy_headless_jasmine) do |t|
-  t.colors = true
-  t.keep_on_error = true
+task :run_jasmine_rake_in_dummy do
+  system <<-BASH
+    cd spec/dummy
+    bundle exec rake spec:javascript
+  BASH
 end
 
 require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:dummy_spec)
+RSpec::Core::RakeTask.new(:run_browser_spec_in_dummy)
 
-task :default => [:cd_to_dummy, :dummy_headless_jasmine, :dummy_spec]
+task :default => [:run_jasmine_rake_in_dummy, :run_browser_spec_in_dummy]

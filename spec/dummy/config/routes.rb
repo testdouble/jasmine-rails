@@ -1,5 +1,5 @@
 Dummy::Application.routes.draw do
-  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
+  mount JasmineRails::Engine => "/jasmine" unless Rails.env.production?
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
