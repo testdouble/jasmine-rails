@@ -59,6 +59,7 @@ module JasmineRails
     def jasmine_config
       @config ||= begin
         path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml')
+        initialize_jasmine_config_if_absent(path)
         YAML.load_file(path)
       end
     end
@@ -79,6 +80,21 @@ module JasmineRails
       files = files.flatten
       files = files.collect {|f| f.gsub(root_dir.to_s + '/', '') }
       files || []
+    end
+
+  private
+
+    def initialize_jasmine_config_if_absent(path)
+      return if File.exist?(path)
+      Rails.logger.warn("Initializing jasmine.yml configuration")
+      FileUtils.mkdir_p(File.dirname(path))
+      File.open(path, 'w') do |f|
+        f.write <<-YAML.gsub(/^\s{10}/,'')
+          spec_files:
+            - "**/*[Ss]pec.{js,coffee}"
+        YAML
+      end
+
     end
   end
 end
