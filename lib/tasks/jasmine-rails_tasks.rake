@@ -8,6 +8,7 @@ namespace :spec do
 
   desc "run test with phantomjs"
   task :javascript => :environment do
+    Rails.application.config.assets.debug = false
     require 'jasmine_rails/offline_asset_paths'
     ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
     spec_filter = ENV['SPEC']
