@@ -90,6 +90,28 @@ module JasmineRails
       FileUtils.mkdir_p(File.dirname(path))
       File.open(path, 'w') do |f|
         f.write <<-YAML.gsub(/^\s{10}/,'')
+          # path to parent directory of src_files
+          # relative path from Rails.root
+          # defaults to app/assets/javascripts
+          src_dir: "app/assets/javascripts"
+
+          # list of file expressions to include as source files
+          # relative path from scr_dir
+          src_files:
+           - "application.{js,coffee}"
+
+          # path to parent directory of spec_files
+          # relative path from Rails.root
+          # defaults to spec/javascripts
+          spec_dir: spec/javascripts
+
+          # list of file expressions to include as helpers into spec runner
+          # relative path from spec_dir
+          helpers:
+            - "helpers/**/*.{js,coffee}"
+
+          # list of file expressions to include as specs into spec runner
+          # relative path from spec_dir
           spec_files:
             - "**/*[Ss]pec.{js,coffee}"
         YAML
