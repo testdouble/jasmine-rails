@@ -7,7 +7,7 @@ module JasmineRails
     # ex: /jasmine
     def route_path
       route = Rails.application.routes.named_routes[:jasmine_rails]
-      raise 'JasmineRails::Engine has not been mounted into routes.rb' unless route
+      raise 'JasmineRails::Engine has not been mounted. Try adding `mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)` to routes.rb' unless route
       path = route.path
 
       # Rails 3.1 support
