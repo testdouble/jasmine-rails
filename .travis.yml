@@ -3,12 +3,13 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 before_script:
+  - mkdir -p spec/testbeds
   # only if you don't commit the testbeds to git
-  - generate-testbeds
+  - bundle exec generate-testbeds
 
 # run all tests in the context of the testbed represented by the
 # current gemfile
-script: "rake testbeds:current:all"
+script: "rake testbed:current:all"
 
 gemfile:
   - gemfiles/rails-3.1
