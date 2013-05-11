@@ -1,3 +1,16 @@
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+
+before_script:
+  # only if you don't commit the testbeds to git
+  - generate-testbeds
+
+# run all tests in the context of the testbed represented by the
+# current gemfile
+script: "rake testbeds:current:all"
+
+gemfile:
+  - gemfiles/rails-3.1
+  - gemfiles/rails-3.2
+  - gemfiles/rails-4.0
