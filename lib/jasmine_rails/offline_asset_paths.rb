@@ -7,10 +7,13 @@ module JasmineRails
     mattr_accessor :disabled
     extend ActiveSupport::Concern
     included do
-      alias_method :compute_public_path, :compute_asset_path
-      alias_method :compute_asset_path_with_offline_asset, :compute_public_path_with_offline_asset
+      if ::Rails::VERSION::MAJOR == 4
+        alias_method :compute_public_path, :compute_asset_path
+        alias_method :compute_asset_path_with_offline_asset, :compute_public_path_with_offline_asset
+        alias_method_chain :compute_asset_path, :offline_asset
+      end
+
       alias_method_chain :compute_public_path, :offline_asset
-      alias_method_chain :compute_asset_path, :offline_asset
     end
 
     def compute_public_path_with_offline_asset(source, dir, options={})

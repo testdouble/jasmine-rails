@@ -10,7 +10,11 @@ namespace :spec do
   task :javascript => :environment do
     Rails.application.config.assets.debug = false
     require 'jasmine_rails/offline_asset_paths'
-    Sprockets::Rails::Helper.send :include, JasmineRails::OfflineAssetPaths
+    if Rails::VERSION::MAJOR == 4
+      Sprockets::Rails::Helper.send :include, JasmineRails::OfflineAssetPaths
+    else
+      ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
+    end
     spec_filter = ENV['SPEC']
     app = ActionController::Integration::Session.new(Rails.application)
     path = JasmineRails.route_path
