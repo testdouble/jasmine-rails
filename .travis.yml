@@ -13,4 +13,4 @@ script: "rake testbeds:current:all"
 gemfile:
   - gemfiles/rails-3.1
   - gemfiles/rails-3.2
-  - gemfiles/rails-4.0
+  - gemfiles/rails-4.0-rc1
