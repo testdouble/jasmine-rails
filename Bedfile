@@ -1,0 +1,36 @@
+store_in 'spec/testbeds'
+
+testbeds do
+  gemfiles 'gemfiles/rails-3.1',
+           'gemfiles/rails-3.2',
+           'gemfiles/rails-4.0-rc1'
+
+  init do
+    run 'rails', 'new', name, '--skip-gemfile', '--skip-bundle'
+    chdir name
+    run 'rails', 'g', 'jasmine:install'
+
+    rm "app/assets/javascripts/application.js"
+
+    cp "../../javascripts/support/jasmine.yml", "./spec/javascripts/support"
+
+    # add bootstrap code so we don't have to copy assets into each testbed
+    # every time a change is made
+    File.open("config/application.rb", "a+") do |f|
+      fixtures = File.expand_path('spec/fixtures', File.dirname(__FILE__))
+      f.puts <<-end_bootstrap
+        Rails.application.config.assets.paths << "#{fixtures}/app/assets/javascripts"
+        Rails.application.config.assets.paths << "#{fixtures}/vendor/assets/javascripts"
+      end_bootstrap
+    end
+
+    File.open('config/routes.rb', 'w') do |f|
+      f.puts 'Rails.application.routes.draw do'
+      f.puts '  mount JasmineRails::Engine => "/jasmine"'
+      f.puts 'end'
+    end
+  end
+
+  rakefile '<%= name %>/Rakefile'
+  depend_on '<%= name %>/config/application.rb'
+end

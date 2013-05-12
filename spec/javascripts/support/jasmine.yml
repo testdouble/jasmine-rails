@@ -1,9 +1,9 @@
-src_dir: "app/assets/javascripts"
+src_dir: "../../fixtures/app/assets/javascripts"
 
 src_files:
  - "application.{js,coffee}"
 
-spec_dir: spec/javascripts
+spec_dir: ../../javascripts
 
 helpers:
   - "helpers/**/*.{js,coffee}"

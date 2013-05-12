@@ -1,0 +1,20 @@
+source "http://rubygems.org"
+
+gemspec path: File.expand_path('..', File.dirname(__FILE__))
+
+# Gems used by the dummy application
+gem 'rails', '~> 4.0.0.rc1'
+gem 'coffee-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'turbolinks'
+
+gem "jquery-rails"
+gem "sqlite3"
+gem 'testbeds'
+
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'pry'
+end

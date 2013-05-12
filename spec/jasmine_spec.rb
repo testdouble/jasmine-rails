@@ -1,5 +1,5 @@
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+require Rails.root.join('config/environment')
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
