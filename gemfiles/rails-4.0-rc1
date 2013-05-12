@@ -10,7 +10,7 @@ gem 'turbolinks'
 
 gem "jquery-rails"
 gem "sqlite3"
-gem 'testbeds', git: 'https://github.com/sinisterchipmunk/testbeds.git'
+gem 'testbeds'
 
 group :test do
   gem 'rspec-rails'
