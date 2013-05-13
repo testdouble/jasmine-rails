@@ -9,3 +9,4 @@ log
 *.sqlite3
 chromedriver.log
 Gemfile.lock
+spec/testbeds
