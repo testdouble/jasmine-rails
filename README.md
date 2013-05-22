@@ -35,6 +35,8 @@ Now, just mount jasmine-rails into your application by adding something like thi
 mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 ```
 
+This will only allow Jasmine specs to be visible in developmen and test environments
+
 ## Configuration
 
 In order to run any specs, you'll need a Jasmine configuration in `spec/javascripts/support/jasmine.yml`. [Here's an example](https://github.com/searls/jasmine-rails/tree/master/spec/dummy/spec/javascripts/support) from this repo's [dummy project](https://github.com/searls/jasmine-rails/tree/master/spec/dummy).
