@@ -42,6 +42,20 @@ module JasmineRails
       each_dir src_dir.to_s, &block
     end
 
+    def fixture_files
+      fixtures = {}
+      files = filter_files fixture_dir, ['**/*.html'], true
+      files.each do |file|
+        dir, name = Pathname.new(file).split
+        fixtures[dir.relative_path_from(fixture_dir).join(name.basename('.*')).to_s] = File.read(file).strip
+      end
+      fixtures
+    end
+
+    def fixtures_enabled
+      jasmine_config.has_key?('fixture_dir')
+    end
+
     # clear out cached jasmine config file
     # it would be nice to automatically flush when the jasmine.yml file changes instead
     # of having this programatic API
@@ -54,6 +68,10 @@ module JasmineRails
     def src_dir
       path = jasmine_config['src_dir'] || 'app/assets/javascripts'
       Rails.root.join(path)
+    end
+
+    def fixture_dir
+      Rails.root.join(spec_dir, jasmine_config['fixture_dir'])
     end
 
     def jasmine_config
@@ -73,12 +91,12 @@ module JasmineRails
       end
     end
 
-    def filter_files(root_dir, patterns)
+    def filter_files(root_dir, patterns, absolute = false)
       files = patterns.to_a.collect do |pattern|
         Dir.glob(root_dir.join(pattern)).sort
       end
       files = files.flatten
-      files = files.collect {|f| f.gsub(root_dir.to_s + '/', '') }
+      files = files.collect {|f| f.gsub(root_dir.to_s + '/', '') } unless absolute
       files || []
     end
 

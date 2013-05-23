@@ -26,5 +26,9 @@ module JasmineRails
       files << 'jasmine-specs.js'
       files
     end
+
+    def jasmine_fixtures
+      JasmineRails.fixtures_enabled and JasmineRails.fixture_files
+    end
   end
 end

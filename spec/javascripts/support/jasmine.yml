@@ -10,3 +10,5 @@ helpers:
 
 spec_files:
   - "**/*[Ss]pec.{js,coffee}"
+
+fixture_dir: fixtures
