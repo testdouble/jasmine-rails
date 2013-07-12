@@ -3,9 +3,9 @@ source "http://rubygems.org"
 gemspec path: File.expand_path('..', File.dirname(__FILE__))
 
 # Gems used by the dummy application
-gem 'rails', '~> 4.0.0.rc1'
-gem 'coffee-rails', '~> 4.0.0.rc1'
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.0'
 gem 'turbolinks'
 
 gem "jquery-rails"
