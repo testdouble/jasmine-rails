@@ -8,6 +8,7 @@ namespace :spec do
 
   desc "run test with phantomjs"
   task :javascript => :environment do
+    original_debug_setting = Rails.application.config.assets.debug
     Rails.application.config.assets.debug = false
     require 'jasmine_rails/offline_asset_paths'
     if Rails::VERSION::MAJOR >= 4
@@ -26,6 +27,7 @@ namespace :spec do
     File.open(runner_path, 'w') {|f| f << html.gsub('/assets', './assets')}
 
     run_cmd %{phantomjs "#{File.join(File.dirname(__FILE__), 'runner.js')}" "file://#{runner_path.to_s}?spec=#{spec_filter}"}
+    Rails.application.config.assets.debug = original_debug_setting
   end
 
   # alias
