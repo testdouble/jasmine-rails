@@ -104,7 +104,7 @@ describe('Foo', function() {
 
 If you were to run:
 
-    bundle exec rake spec:javascript
+    RAILS_ENV=test bundle exec rake spec:javascript
 
 You'd hopefully see something like:
 
@@ -114,7 +114,7 @@ You'd hopefully see something like:
 
 You can filter execution by passing the `SPEC` option as well:
 
-    bundle exec rake spec:javascript SPEC=my_test
+    RAILS_ENV=test bundle exec rake spec:javascript SPEC=my_test
 
 If you experience an error at this point, the most likely cause is JavaScript being loaded out of order, or otherwise conflicting with other existing JavaScript in your project. See "Debugging" below.
 
