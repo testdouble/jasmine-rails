@@ -17,7 +17,7 @@ namespace :spec do
       ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
     end
     spec_filter = ENV['SPEC']
-    app = ActionController::Integration::Session.new(Rails.application)
+    app = ActionDispatch::Integration::Session.new(Rails.application)
     path = JasmineRails.route_path
     app.get path, :console => 'true', :spec => spec_filter
     JasmineRails::OfflineAssetPaths.disabled = true
