@@ -7,6 +7,8 @@ before_script:
   # only if you don't commit the testbeds to git
   - bundle exec generate-testbeds
 
+bundler_args: ''
+
 # run all tests in the context of the testbed represented by the
 # current gemfile
 script: "rake testbed:current:all"
