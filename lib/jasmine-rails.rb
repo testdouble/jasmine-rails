@@ -58,7 +58,8 @@ module JasmineRails
 
     def jasmine_config
       @config ||= begin
-        path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml')
+        path = Rails.root.join('config', 'jasmine.yml')      
+        path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml') unless File.exists?(path)
         initialize_jasmine_config_if_absent(path)
         YAML.load_file(path)
       end
