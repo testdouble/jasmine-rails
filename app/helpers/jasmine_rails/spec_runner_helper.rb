@@ -20,6 +20,7 @@ module JasmineRails
     def jasmine_js_files
       files = Jasmine::Core.js_files
       if params[:console]
+        files << 'jasmine-console-shims.js'
         files << 'jasmine-console-reporter.js'
       end
       files << 'jasmine-boot.js'
