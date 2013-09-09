@@ -36,7 +36,7 @@ module JasmineRails
       end
 
       def get_spec_runner(spec_filter)
-        app = ActionController::Integration::Session.new(Rails.application)
+        app = ActionDispatch::Integration::Session.new(Rails.application)
         path = JasmineRails.route_path
         JasmineRails::OfflineAssetPaths.disabled = false
         app.get path, :console => 'true', :spec => spec_filter
