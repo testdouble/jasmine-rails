@@ -46,7 +46,7 @@ In order to run any specs, you'll need a Jasmine configuration in `spec/javascri
 src_dir: "app/assets/javascripts"
 
 # list of file expressions to include as source files
-# relative path from scr_dir
+# relative path from src_dir
 src_files:
  - "application.{js,coffee}"
 
