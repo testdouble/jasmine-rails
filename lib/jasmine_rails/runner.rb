@@ -26,13 +26,24 @@ module JasmineRails
         end
       end
 
+      # temporarily override internal rails settings for the given block
+      # and reset the settings after work is complete.
+      #
+      # * disable Rails assets debug setting to ensure generated application
+      # is built into one JS file
+      # * disable asset host so that generated runner.html file uses
+      # relative paths to included javascript files
       def override_rails_config
         config = Rails.application.config
 
-        original_asssets_debug = config.assets.debug
+        original_assets_debug = config.assets.debug
+        original_assets_host = ActionController::Base.asset_host
         config.assets.debug = false
+        ActionController::Base.asset_host = nil
         yield
-        config.assets.debug = original_asssets_debug
+      ensure
+        config.assets.debug = original_assets_debug
+        ActionController::Base.asset_host = original_assets_host
       end
 
       def get_spec_runner(spec_filter)
