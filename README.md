@@ -99,6 +99,7 @@ describe('Foo', function() {
   });
 });
 ```
+\*As noted above, spec_helper and foo.js must be required in order for foo_spec.js to run.
 
 ## Running from the command line
 
