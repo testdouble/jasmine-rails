@@ -7,7 +7,7 @@ PATH
       sprockets-rails
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.1.12)
       actionpack (= 3.1.12)
