@@ -1,11 +1,7 @@
 #!/bin/bash -e
 
-PWD=`pwd`
-
 function run_tests(){
   local version=$1
-  echo "i think it is $PWD"
-  cd "$PWD"
   export BUNDLE_GEMFILE="gemfiles/rails-$version"
   bundle install
   rake testbed:current:all
