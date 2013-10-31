@@ -8,6 +8,7 @@ gemspec
 gem 'testbeds'
 
 # Gems used by the dummy application
+gem 'rails', '~> 4.0'
 gem "jquery-rails"
 gem "sqlite3"
 gem 'coffee-script'
