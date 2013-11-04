@@ -13,7 +13,7 @@ module JasmineRails
           File.open(runner_path, 'w') {|f| f << html.gsub('/assets', './assets')}
 
           phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
-          run_cmd %{phantomjs "#{phantomjs_runner_path}" "file://#{runner_path.to_s}?spec=#{spec_filter}"}
+          run_cmd %{phantomjs "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
         end
       end
 
