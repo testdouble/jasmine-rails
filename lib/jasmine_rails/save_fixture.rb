@@ -25,6 +25,19 @@ module JasmineRails
       File.open(fixture_path, 'w') do |file|
         file.puts(content)
       end
+
+      ignore_generated_fixtures
+    end
+
+    private
+
+    # create .gitignore to exclude generated fixtures from repository
+    def ignore_generated_fixtures
+      ignore_file = File.join(Rails.root, FIXTURE_DIRECTORY, '../.gitignore')
+      return if File.exists?(ignore_file)
+      File.open(ignore_file, 'w') do |file|
+        file.puts('generated')
+      end
     end
   end
 end
