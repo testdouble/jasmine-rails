@@ -23,6 +23,11 @@ module JasmineRails
       Rails.root.join(path)
     end
 
+    def tmp_dir
+      path = jasmine_config['tmp_dir'] || 'spec/tmp'
+      Rails.root.join(path)
+    end
+
     # returns list of all files to be included into the jasmine testsuite
     # includes:
     # * application src_files
