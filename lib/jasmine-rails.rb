@@ -120,6 +120,11 @@ module JasmineRails
           # relative path from spec_dir
           spec_files:
             - "**/*[Ss]pec.{js,coffee}"
+
+          # path to directory of temporary files
+          # (spec runner and asset cache)
+          # defaults to spec/tmp
+          tmp_dir: "spec/tmp"
         YAML
       end
 
