@@ -23,6 +23,11 @@ module JasmineRails
       Rails.root.join(path)
     end
 
+    def tmp_dir
+      path = jasmine_config['tmp_dir'] || 'spec/tmp'
+      Rails.root.join(path)
+    end
+
     # returns list of all files to be included into the jasmine testsuite
     # includes:
     # * application src_files
@@ -115,6 +120,11 @@ module JasmineRails
           # relative path from spec_dir
           spec_files:
             - "**/*[Ss]pec.{js,coffee}"
+
+          # path to directory of temporary files
+          # (spec runner and asset cache)
+          # defaults to spec/tmp
+          tmp_dir: "spec/tmp"
         YAML
       end
 

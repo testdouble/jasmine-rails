@@ -9,7 +9,7 @@ module JasmineRails
         override_rails_config do
           include_offline_asset_paths_helper
           html = get_spec_runner(spec_filter)
-          runner_path = Rails.root.join('spec/tmp/runner.html')
+          runner_path = JasmineRails.tmp_dir.join('runner.html')
           File.open(runner_path, 'w') {|f| f << html.gsub('/assets', './assets')}
 
           phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
