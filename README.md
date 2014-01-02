@@ -27,49 +27,11 @@ First, add jasmine-rails to your Gemfile, like so
       gem 'jasmine-rails'
     end
 
-Next, run `bundle install`.
-
-Now, just mount jasmine-rails into your application by adding something like this to your routes.rb.  The engine can be mounted to any path that you choose.
-
-``` ruby
-mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
-```
+Next, run `bundle install` and then `rails generate jasmine_rails:install` to setup your project with all you'll need to run the testsuite.
 
 ## Configuration
 
-In order to run any specs, you'll need a Jasmine configuration in `spec/javascripts/support/jasmine.yml`. [Here's an example](https://github.com/searls/jasmine-rails/tree/master/spec/javascripts/support) from this repo's [dummy project](https://github.com/searls/jasmine-rails/tree/master/spec/dummy).
-
-``` yaml
-# path to parent directory of src_files
-# relative path from Rails.root
-# defaults to app/assets/javascripts
-src_dir: "app/assets/javascripts"
-
-# list of file expressions to include as source files
-# relative path from src_dir
-src_files:
- - "application.{js,coffee}"
-
-# path to parent directory of spec_files
-# relative path from Rails.root
-# defaults to spec/javascripts
-spec_dir: spec/javascripts
-
-# list of file expressions to include as helpers into spec runner
-# relative path from spec_dir
-helpers:
-  - "helpers/**/*.{js,coffee}"
-
-# list of file expressions to include as specs into spec runner
-# relative path from spec_dir
-spec_files:
-  - "**/*[Ss]pec.{js,coffee}"
-
-# path to directory of temporary files
-# (spec runner and asset cache)
-# defaults to spec/tmp
-tmp_dir: "spec/tmp"
-```
+Configuring the Jasmine test runner is done in `spec/javascripts/support/jasmine.yml`. [Here's an example](https://github.com/searls/jasmine-rails/tree/master/spec/javascripts/support) from this repo's [dummy project](https://github.com/searls/jasmine-rails/tree/master/spec/dummy).
 
 ## Asset Pipeline Support
 
