@@ -21,7 +21,8 @@ module JasmineRails
       source = source.to_s
       return source if source.starts_with?('/')
       content = Rails.application.assets[source].to_s
-      source_path = JasmineRails.tmp_dir.join('assets').join(source)
+      asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
+      source_path = JasmineRails.tmp_dir.join(asset_prefix).join(source)
 
       FileUtils.mkdir_p File.dirname(source_path)
       Rails.logger.debug "Compiling #{source} to #{source_path}"
@@ -32,7 +33,7 @@ module JasmineRails
           f << content
         end
       end
-      "/assets/#{source}"
+      "/#{asset_prefix}/#{source}"
     end
 
   end
