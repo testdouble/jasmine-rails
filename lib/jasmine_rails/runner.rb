@@ -10,7 +10,8 @@ module JasmineRails
           include_offline_asset_paths_helper
           html = get_spec_runner(spec_filter)
           runner_path = JasmineRails.tmp_dir.join('runner.html')
-          File.open(runner_path, 'w') {|f| f << html.gsub('/assets', './assets')}
+          asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
+          File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
 
           phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
           run_cmd %{phantomjs "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
