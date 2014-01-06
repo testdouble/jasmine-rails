@@ -72,8 +72,8 @@ spec_files:
 You can write a spec to test Foo in `spec/javascripts/foo_spec.js`:
 
 ```javascript
-// include spec/javascripts/helpers/spec_helper.js and app/assets/javascripts/foo.js
-//= require helpers/spec_helper
+// include spec/javascripts/helpers/some_helper_file.js and app/assets/javascripts/foo.js
+//= require helpers/some_helper_file
 //= require foo
 describe('Foo', function() {
   it("does something", function() {
