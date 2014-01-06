@@ -7,6 +7,8 @@ module JasmineRails
       # raises an exception if any errors are encountered while running the testsuite
       def run(spec_filter = nil)
         override_rails_config do
+          require 'phantomjs'
+
           include_offline_asset_paths_helper
           html = get_spec_runner(spec_filter)
           runner_path = JasmineRails.tmp_dir.join('runner.html')
