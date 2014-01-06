@@ -45,7 +45,7 @@ writing specs!
 
 ## Configuration
 
-Configuring the Jasmine test runner is done in `spec/javascripts/support/jasmine.yml`. [Here's an example](https://github.com/searls/jasmine-rails/tree/master/spec/javascripts/support) from this repo's [dummy project](https://github.com/searls/jasmine-rails/tree/master/spec/dummy).
+Configuring the Jasmine test runner is done in `spec/javascripts/support/jasmine.yml`.
 
 ## Asset Pipeline Support
 
