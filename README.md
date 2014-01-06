@@ -27,7 +27,21 @@ First, add jasmine-rails to your Gemfile, like so
       gem 'jasmine-rails'
     end
 
-Next, run `bundle install` and then `rails generate jasmine_rails:install` to setup your project with all you'll need to run the testsuite.
+Next:
+
+```
+$ bundle install
+```
+
+And finally, run the Rails generator:
+
+```
+$ rails generate jasmine_rails:install
+```
+
+The generator will create the necessary configuration files and mount a test
+runner to [/specs](http://localhost:3000/specs) so that you can get started
+writing specs!
 
 ## Configuration
 
@@ -35,7 +49,8 @@ Configuring the Jasmine test runner is done in `spec/javascripts/support/jasmine
 
 ## Asset Pipeline Support
 
-The jasmine-rails gem *fully* supports the Rails asset pipeline which means you can:
+The jasmine-rails gem fully supports the Rails asset pipeline which means you can:
+
 * use `coffee_script` or other Javascript precompilers for source or
   test files
 * use sprockets directives to control inclusion/exclusion of dependent
