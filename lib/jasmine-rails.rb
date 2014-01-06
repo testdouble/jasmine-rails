@@ -63,7 +63,7 @@ module JasmineRails
 
     def jasmine_config
       @config ||= begin
-        path = Rails.root.join('config', 'jasmine.yml')      
+        path = Rails.root.join('config', 'jasmine.yml')
         path = Rails.root.join('spec', 'javascripts', 'support', 'jasmine.yml') unless File.exists?(path)
         initialize_jasmine_config_if_absent(path)
         YAML.load_file(path)
@@ -94,40 +94,7 @@ module JasmineRails
       return if File.exist?(path)
       Rails.logger.warn("Initializing jasmine.yml configuration")
       FileUtils.mkdir_p(File.dirname(path))
-      File.open(path, 'w') do |f|
-        f.write <<-YAML.gsub(/^\s{10}/,'')
-          # path to parent directory of src_files
-          # relative path from Rails.root
-          # defaults to app/assets/javascripts
-          src_dir: "app/assets/javascripts"
-
-          # list of file expressions to include as source files
-          # relative path from scr_dir
-          src_files:
-           - "application.{js,coffee}"
-
-          # path to parent directory of spec_files
-          # relative path from Rails.root
-          # defaults to spec/javascripts
-          spec_dir: spec/javascripts
-
-          # list of file expressions to include as helpers into spec runner
-          # relative path from spec_dir
-          helpers:
-            - "helpers/**/*.{js,coffee}"
-
-          # list of file expressions to include as specs into spec runner
-          # relative path from spec_dir
-          spec_files:
-            - "**/*[Ss]pec.{js,coffee}"
-
-          # path to directory of temporary files
-          # (spec runner and asset cache)
-          # defaults to spec/tmp
-          tmp_dir: "spec/tmp"
-        YAML
-      end
-
+      FileUtils.cp(File.join(File.dirname(__FILE__), 'generators', 'jasmine_rails', 'templates', 'jasmine.yml'), path)
     end
   end
 end
