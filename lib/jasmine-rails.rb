@@ -1,6 +1,7 @@
 require "jasmine_rails/engine"
 
 module JasmineRails
+  DEFAULT_TMP_DIR = 'tmp/jasmine'
   class << self
     # return the relative path to access the spec runner
     # for the host Rails application
@@ -24,7 +25,7 @@ module JasmineRails
     end
 
     def tmp_dir
-      path = jasmine_config['tmp_dir'] || 'spec/tmp'
+      path = jasmine_config['tmp_dir'] || JasmineRails::DEFAULT_TMP_DIR
       Rails.root.join(path)
     end
 

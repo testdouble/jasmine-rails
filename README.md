@@ -114,7 +114,7 @@ In my workflow, I like to work with specs in the command line until I hit a snag
 
 ### From the command line
 
-Even though they both read from the same config file, it's certainly possible that your specs will pass in the browser and fail from the command line. In this case, you can try to debug or analyze what's going on loading the headless runner.html file into your browser environment. The generated runner.html file is written out to `spec/tmp/runner.html` after each run.
+Even though they both read from the same config file, it's certainly possible that your specs will pass in the browser and fail from the command line. In this case, you can try to debug or analyze what's going on loading the headless runner.html file into your browser environment. The generated runner.html file is written out to `tmp/jasmine/runner.html` after each run.
 
 ### Ajax / XHRs
 
@@ -123,6 +123,6 @@ As a general rule, Jasmine is designed for unit testing, and as a result real ne
 If your application code issues XHR requests during your test run, please note that **XHR requests for the local filesystem** are blocked by default for most browsers for security reasons.  To debug local XHR requests (for example, if you jasmine-jquery fixtures), you will need to enable local filesystem requests in your browser.
 
 Example for Google Chrome (in Mac OS X):
-    open -a "Google Chrome" spec/tmp/runner.html --args --allow-file-access-from-files
+    open -a "Google Chrome" tmp/jasmine/runner.html --args --allow-file-access-from-files
 
 Again, it's the opinion of the present author that this shouldn't be necessary in any situation but legacy rescue of an existing test suite. With respect specifically to HTML fixtures, please consider [jasmine-fixture](https://github.com/searls/jasmine-fixture) and [my rationale](http://searls.testdouble.com/posts/2011-12-11-jasmine-fixtures.html) for it.
