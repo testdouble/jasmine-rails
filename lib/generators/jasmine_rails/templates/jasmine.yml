@@ -25,5 +25,5 @@ spec_files:
 
 # path to directory of temporary files
 # (spec runner and asset cache)
-# defaults to spec/tmp
-tmp_dir: "spec/tmp"
+# defaults to tmp/jasmine
+tmp_dir: "tmp/jasmine"
