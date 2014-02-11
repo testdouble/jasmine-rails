@@ -8,9 +8,11 @@ module JasmineRails
       def run(spec_filter = nil)
         override_rails_config do
           require 'phantomjs'
+          require 'fileutils'
 
           include_offline_asset_paths_helper
           html = get_spec_runner(spec_filter)
+          FileUtils.mkdir_p JasmineRails.tmp_dir
           runner_path = JasmineRails.tmp_dir.join('runner.html')
           asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
           File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
