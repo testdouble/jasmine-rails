@@ -12,6 +12,8 @@ gem "jquery-rails"
 gem "sqlite3"
 gem 'testbeds'
 
+gem 'jasmine-core', '~> 1.3'
+
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
