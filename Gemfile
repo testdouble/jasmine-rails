@@ -7,8 +7,6 @@ ruby "1.9.3"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'testbeds'
-
 # Gems used by the dummy application
 gem 'rails', '~> 4.0'
 gem "jquery-rails"
