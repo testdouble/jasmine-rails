@@ -23,7 +23,7 @@ end
 describe "Jasmine" do
   specify do
     visit '/jasmine'
-    find('.passingAlert').should have_content "Passing"
+    find('.bar.passed,.bar.passingAlert')
   end
 end
 
