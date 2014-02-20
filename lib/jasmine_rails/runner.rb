@@ -57,7 +57,10 @@ module JasmineRails
         JasmineRails::OfflineAssetPaths.disabled = false
         app.get path, :console => 'true', :spec => spec_filter
         JasmineRails::OfflineAssetPaths.disabled = true
-        raise "Jasmine runner at '#{path}' returned a #{app.response.status} error: #{app.response.message}" unless app.response.success?
+        unless app.response.success?
+          raise "Jasmine runner at '#{path}' returned a #{app.response.status} error: #{app.response.message} \n\n" +
+                "The most common cause is an asset compilation failure. Full HTML response: \n\n #{app.response.body}"
+        end
         app.response.body
       end
 
