@@ -3,7 +3,8 @@ store_in 'spec/testbeds'
 testbeds do
   gemfiles 'gemfiles/rails-3.1',
            'gemfiles/rails-3.2',
-           'gemfiles/rails-4.0'
+           'gemfiles/rails-4.0',
+           'gemfiles/rails-4.0-jasmine-2'
 
   init do
     run 'rails', 'new', name, '--skip-gemfile', '--skip-bundle'
