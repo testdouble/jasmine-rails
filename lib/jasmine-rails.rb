@@ -55,6 +55,11 @@ module JasmineRails
       @config = nil
     end
 
+    # force ssl when loading the test runner. Set to true if your app forces SSL
+    def force_ssl
+      jasmine_config['force_ssl'] || false
+    end
+
     private
 
     def src_dir
