@@ -7,7 +7,9 @@ module JasmineRails
     # includes:
     # * core jasmine css files
     def jasmine_css_files
-      Jasmine::Core.css_files
+      files = Jasmine::Core.css_files
+      files << 'jasmine-specs.css'
+      files
     end
 
     # return list of javascript files needed for jasmine testsuite

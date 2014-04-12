@@ -23,6 +23,7 @@ testbeds do
       f.puts <<-end_bootstrap
         Rails.application.config.assets.paths << "#{fixtures}/app/assets/javascripts"
         Rails.application.config.assets.paths << "#{fixtures}/vendor/assets/javascripts"
+        Rails.application.config.assets.paths << "#{fixtures}/app/assets/stylesheets"
       end_bootstrap
     end
   end

@@ -42,10 +42,19 @@ module JasmineRails
       files
     end
 
+    # return a list of any additional CSS files to be included into the jasmine testsuite
+    def css_files
+      files = []
+      files += filter_files css_dir, jasmine_config['css_files']
+      files += filter_files spec_dir, jasmine_config['css_files']
+      files
+    end
+
     # iterate over all directories used as part of the testsuite (including subdirectories)
     def each_spec_dir(&block)
       each_dir spec_dir.to_s, &block
       each_dir src_dir.to_s, &block
+      each_dir css_dir.to_s, &block
     end
 
     # clear out cached jasmine config file
@@ -61,6 +70,11 @@ module JasmineRails
     end
 
     private
+
+    def css_dir
+      path = jasmine_config['css_dir'] || 'app/assets/stylesheets'
+      Rails.root.join(path)
+    end
 
     def src_dir
       path = jasmine_config['src_dir'] || 'app/assets/javascripts'
