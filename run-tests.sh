@@ -3,7 +3,7 @@
 function install_gems(){
   local version=$1
   export BUNDLE_GEMFILE="gemfiles/rails-$version"
-  bundle install
+  bundle install --no-binstubs
 }
 export -f install_gems
 
@@ -24,7 +24,7 @@ install_gems "4.1"
 
 mkdir -p spec/testbeds
 export BUNDLE_GEMFILE=""
-bundle exec generate-testbeds
+generate-testbeds
 
 run_tests "3.1"
 run_tests "3.2"
