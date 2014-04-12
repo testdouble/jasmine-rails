@@ -53,6 +53,7 @@ module JasmineRails
 
       def get_spec_runner(spec_filter)
         app = ActionDispatch::Integration::Session.new(Rails.application)
+        app.https!(JasmineRails.force_ssl)
         path = JasmineRails.route_path
         JasmineRails::OfflineAssetPaths.disabled = false
         app.get path, :console => 'true', :spec => spec_filter
