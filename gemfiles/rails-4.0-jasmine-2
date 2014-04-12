@@ -10,7 +10,6 @@ gem 'turbolinks'
 
 gem "jquery-rails"
 gem "sqlite3"
-gem 'testbeds'
 
 gem 'jasmine-core', '~> 2.0'
 
