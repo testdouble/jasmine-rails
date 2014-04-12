@@ -22,7 +22,7 @@ end
 
 describe "Jasmine" do
   specify do
-    visit '/jasmine'
+    visit '/specs'
     find('.bar.passed,.bar.passingAlert')
   end
 end
