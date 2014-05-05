@@ -126,3 +126,70 @@ Example for Google Chrome (in Mac OS X):
     open -a "Google Chrome" tmp/jasmine/runner.html --args --allow-file-access-from-files
 
 Again, it's the opinion of the present author that this shouldn't be necessary in any situation but legacy rescue of an existing test suite. With respect specifically to HTML fixtures, please consider [jasmine-fixture](https://github.com/searls/jasmine-fixture) and [my rationale](http://searls.testdouble.com/posts/2011-12-11-jasmine-fixtures.html) for it.
+
+### Custom Helpers
+
+If you need to write a custom spec runner template (for example, using requireJS to load components from your specs), you might benifit from 
+custom helper functions.  The controller will attempt to load JasmineRails::SpecHelper if it exists. An example:
+
+```ruby
+# in lib/jasmine_rails/spec_helper.rb
+Module JasmineRails
+	Module SpecHelper
+		def custom_fuction
+			"hello world"
+	  end
+	end
+end
+```
+
+Create a custom layout in app/layouts/jasmine_rails/spec_runner.html.erb and reference your helper
+```erb
+<%= custom_function %>
+```
+
+If you wanted to do something like this using requirejs-rails https://github.com/jwhitley/requirejs-rails, your helper 
+might look like this
+```
+
+# in lib/jasmine_rails_spec_helper.rb
+Module JasmineRails
+	Module SpecHelper
+		# Gives us access to the require_js_include_tag helper
+		include RequirejsHelper
+	end
+end
+```
+
+Remove any reference to src_files in `spec/javascripts/support/jasmine.yml`, to ensure files aren't loaded prematurely
+
+Create your custom layout `app/layouts/jasmine_rails/spec_runner.html.erb` like so:
+```erb
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+    <title>Jasmine Specs</title>
+
+    <%= stylesheet_link_tag *jasmine_css_files %>
+    <%= requirejs_include_tag %>
+    <%= javascript_include_tag *jasmine_js_files %>
+  </head>
+  <body>
+    <div id="jasmine_content"></div>
+    <%= yield %>
+  </body>
+</html>
+
+```
+
+Write your specs AMD style
+
+```coffeescript
+
+require ['my/module'], (Module) ->
+	describe 'test my module', ->
+		it 'does something', ->
+			expect(Module.method).toEqual 'something'
+```
