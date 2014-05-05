@@ -20,8 +20,8 @@ module JasmineRails
     end
 
     def spec_dir
-      path = jasmine_config['spec_dir'] || 'spec/javascripts'
-      Rails.root.join(path)
+      paths = jasmine_config['spec_dir'] || 'spec/javascripts'
+      [paths].flatten.collect { |path| Rails.root.join(path) }
     end
 
     def tmp_dir
@@ -37,8 +37,10 @@ module JasmineRails
     def spec_files
       files = []
       files += filter_files src_dir, jasmine_config['src_files']
-      files += filter_files spec_dir, jasmine_config['helpers']
-      files += filter_files spec_dir, jasmine_config['spec_files']
+      spec_dir.each do |dir|
+        files += filter_files dir, jasmine_config['helpers']
+        files += filter_files dir, jasmine_config['spec_files']
+      end
       files
     end
 
@@ -46,13 +48,17 @@ module JasmineRails
     def css_files
       files = []
       files += filter_files css_dir, jasmine_config['css_files']
-      files += filter_files spec_dir, jasmine_config['css_files']
+      spec_dir.each do |dir|
+        files += filter_files dir, jasmine_config['css_files']
+      end
       files
     end
 
     # iterate over all directories used as part of the testsuite (including subdirectories)
     def each_spec_dir(&block)
-      each_dir spec_dir.to_s, &block
+      spec_dir.each do |dir|
+        each_dir dir.to_s, &block
+      end
       each_dir src_dir.to_s, &block
       each_dir css_dir.to_s, &block
     end
