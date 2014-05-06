@@ -184,12 +184,12 @@ Create your custom layout `app/layouts/jasmine_rails/spec_runner.html.erb` like 
 
 ```
 
-Write your specs AMD style
+Use require with a callback to load your components
 
 ```coffeescript
 
-require ['my/module'], (Module) ->
-	describe 'test my module', ->
+describe 'test my module', ->
+	require ['my/module'], (Module) ->
 		it 'does something', ->
 			expect(Module.method).toEqual 'something'
 ```
