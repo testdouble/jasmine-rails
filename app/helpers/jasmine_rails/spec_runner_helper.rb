@@ -16,16 +16,13 @@ module JasmineRails
     # all files are fetched through the Rails asset pipeline
     # includes:
     # * core jasmine libraries
-    # * (optional) jasmine-console-reporter.js for CLI output
+    # * (optional) reporter libraries
     # * jasmine-boot.js test runner
     # * jasmine-specs.js built by asset pipeline which merges application specific libraries and specs
     def jasmine_js_files
       files = Jasmine::Core.js_files
       files << jasmine_boot_file
-      if params[:console]
-        files << 'jasmine-console-shims.js'
-        files << 'jasmine-console-reporter.js'
-      end
+      files += JasmineRails.reporter_files params[:reporters]
       files << 'jasmine-specs.js'
       files
     end

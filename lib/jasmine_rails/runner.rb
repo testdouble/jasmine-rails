@@ -5,13 +5,13 @@ module JasmineRails
     class << self
       # Run the Jasmine testsuite via phantomjs CLI
       # raises an exception if any errors are encountered while running the testsuite
-      def run(spec_filter = nil)
+      def run(spec_filter = nil, reporters = 'console')
         override_rails_config do
           require 'phantomjs'
           require 'fileutils'
 
           include_offline_asset_paths_helper
-          html = get_spec_runner(spec_filter)
+          html = get_spec_runner(spec_filter, reporters)
           FileUtils.mkdir_p JasmineRails.tmp_dir
           runner_path = JasmineRails.tmp_dir.join('runner.html')
           asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
@@ -51,12 +51,12 @@ module JasmineRails
         ActionController::Base.asset_host = original_assets_host
       end
 
-      def get_spec_runner(spec_filter)
+      def get_spec_runner(spec_filter, reporters)
         app = ActionDispatch::Integration::Session.new(Rails.application)
         app.https!(JasmineRails.force_ssl)
         path = JasmineRails.route_path
         JasmineRails::OfflineAssetPaths.disabled = false
-        app.get path, :console => 'true', :spec => spec_filter
+        app.get path, :reporters => reporters, :spec => spec_filter
         JasmineRails::OfflineAssetPaths.disabled = true
         unless app.response.success?
           raise "Jasmine runner at '#{path}' returned a #{app.response.status} error: #{app.response.message} \n\n" +
