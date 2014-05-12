@@ -129,8 +129,8 @@ Again, it's the opinion of the present author that this shouldn't be necessary i
 
 ### Custom Helpers
 
-If you need to write a custom spec runner template (for example, using requireJS to load components from your specs), you might benifit from 
-custom helper functions.  The controller will attempt to load JasmineRails::SpecHelper if it exists. An example:
+If you need to write a custom spec runner template (for example, using requireJS to load components from your specs), you might benefit from 
+custom helper functions.  The controller will attempt to load `JasmineRails::SpecHelper` if it exists. An example:
 
 ```ruby
 # in lib/jasmine_rails/spec_helper.rb
@@ -143,13 +143,15 @@ Module JasmineRails
 end
 ```
 
-Create a custom layout in app/layouts/jasmine_rails/spec_runner.html.erb and reference your helper
+Create a custom layout in app/layouts/jasmine_rails/spec_runner.html.erb and reference your helper:
+
 ```erb
 <%= custom_function %>
 ```
 
-If you wanted to do something like this using requirejs-rails https://github.com/jwhitley/requirejs-rails, your helper 
-might look like this
+If you wanted to do something like this using [requirejs-rails](https://github.com/jwhitley/requirejs-rails), your helper 
+might look like this:
+
 ```
 
 # in lib/jasmine_rails_spec_helper.rb
@@ -161,7 +163,7 @@ Module JasmineRails
 end
 ```
 
-Remove any reference to src_files in `spec/javascripts/support/jasmine.yml`, to ensure files aren't loaded prematurely
+Remove any reference to `src_files` in `spec/javascripts/support/jasmine.yml`, to ensure files aren't loaded prematurely.
 
 Create your custom layout `app/layouts/jasmine_rails/spec_runner.html.erb` like so:
 ```erb
@@ -184,7 +186,7 @@ Create your custom layout `app/layouts/jasmine_rails/spec_runner.html.erb` like 
 
 ```
 
-Use require with a callback to load your components
+Use require with a callback to load your components:
 
 ```coffeescript
 
