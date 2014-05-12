@@ -195,3 +195,30 @@ describe 'test my module', ->
 		it 'does something', ->
 			expect(Module.method).toEqual 'something'
 ```
+
+### Custom Reporter
+
+You can configure custom reporter files to use when running from the
+command line in `jasmine.yml`:
+
+```yml
+reporters:
+  cool-reporter:
+    - "cool-reporter.js"
+  awesome-reporter:
+    - "awesome-part-1.js"
+    - "awesome-part-2.js"
+```
+
+Then, specify which reporters to use when you run the rake task:
+
+```
+RAILS_ENV=test REPORTERS='cool-reporter,awesome-reporter' rake spec:javascripts
+```
+
+The console reporter shipped with jasmine-rails will be used by
+default, and you can explicitly use it by the name `console`.
+
+See [jasmine-junitreporter][j-junit] for an example with JUnit output.
+
+[j-junit]: https://github.com/shepmaster/jasmine-junitreporter-gem

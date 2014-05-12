@@ -2,6 +2,8 @@ require "jasmine_rails/engine"
 
 module JasmineRails
   DEFAULT_TMP_DIR = 'tmp/jasmine'
+  CONSOLE_REPORTERS = {'console' => ['jasmine-console-shims.js',
+                                     'jasmine-console-reporter.js']}
   class << self
     # return the relative path to access the spec runner
     # for the host Rails application
@@ -27,6 +29,15 @@ module JasmineRails
     def tmp_dir
       path = jasmine_config['tmp_dir'] || JasmineRails::DEFAULT_TMP_DIR
       Rails.root.join(path)
+    end
+
+    def reporter_files(types_string)
+      types = types_string.to_s.split(',')
+
+      reporters = jasmine_config['reporters'] || {}
+      reporters = reporters.merge(JasmineRails::CONSOLE_REPORTERS)
+
+      reporters.values_at(*types).compact.flatten
     end
 
     # returns list of all files to be included into the jasmine testsuite

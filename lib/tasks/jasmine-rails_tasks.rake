@@ -4,7 +4,8 @@ namespace :spec do
   task :javascript => [:environment] do
     require 'jasmine_rails/runner'
     spec_filter = ENV['SPEC']
-    JasmineRails::Runner.run spec_filter
+    reporters = ENV.fetch('REPORTERS', 'console')
+    JasmineRails::Runner.run spec_filter, reporters
   end
 
   # alias
