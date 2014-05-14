@@ -134,8 +134,8 @@ custom helper functions.  The controller will attempt to load `JasmineRails::Spe
 
 ```ruby
 # in lib/jasmine_rails/spec_helper.rb
-Module JasmineRails
-	Module SpecHelper
+module JasmineRails
+	module SpecHelper
 		def custom_fuction
 			"hello world"
 	  end
@@ -155,8 +155,8 @@ might look like this:
 ```
 
 # in lib/jasmine_rails_spec_helper.rb
-Module JasmineRails
-	Module SpecHelper
+module JasmineRails
+	module SpecHelper
 		# Gives us access to the require_js_include_tag helper
 		include RequirejsHelper
 	end
