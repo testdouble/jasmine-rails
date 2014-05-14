@@ -136,7 +136,7 @@ custom helper functions.  The controller will attempt to load `JasmineRails::Spe
 # in lib/jasmine_rails/spec_helper.rb
 Module JasmineRails
 	Module SpecHelper
-		def custom_fuction
+		def custom_function
 			"hello world"
 	  end
 	end
