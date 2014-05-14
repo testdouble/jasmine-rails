@@ -154,7 +154,7 @@ might look like this:
 
 ```
 
-# in lib/jasmine_rails_spec_helper.rb
+# in lib/jasmine_rails/spec_helper.rb
 Module JasmineRails
 	Module SpecHelper
 		# Gives us access to the require_js_include_tag helper
