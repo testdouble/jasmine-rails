@@ -11,14 +11,6 @@ By bundling this gem and configuring your project, you can expect to:
   [PhantomJS](http://phantomjs.org/))
 * Write specs or source in [CoffeeScript](http://jashkenas.github.com/coffee-script/), leveraging the [asset pipeline](http://railscasts.com/episodes/279-understanding-the-asset-pipeline) to pre-process it
 
-## Prerequisites
-
-Install phantomjs in order to run tests headless on the command line. The easiest way (on a Mac) that I've found is to use [homebrew](https://github.com/mxcl/homebrew):
-
-    brew install phantomjs
-
-If you're not on a Mac, fear not, as [installing PhantomJS](http://phantomjs.org) is pretty painless for most environments. The important thing is that the binary be somewhere on your PATH.
-
 ## Installation
 
 First, add jasmine-rails to your Gemfile, like so
