@@ -144,8 +144,7 @@ Create a custom layout in app/views/layouts/jasmine_rails/spec_runner.html.erb a
 If you wanted to do something like this using [requirejs-rails](https://github.com/jwhitley/requirejs-rails), your helper
 might look like this:
 
-```
-
+```ruby
 # in lib/jasmine_rails/spec_helper.rb
 module JasmineRails
   module SpecHelper
