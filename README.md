@@ -122,12 +122,12 @@ Again, it's the opinion of the present author that this shouldn't be necessary i
 ### Custom Helpers
 
 If you need to write a custom spec runner template (for example, using requireJS to load components from your specs), you might benefit from
-custom helper functions.  The controller will attempt to load `JasmineRails::SpecRunnerHelper` if it exists. An example:
+custom helper functions.  The controller will attempt to load `JasmineRails::SpecHelper` if it exists. An example:
 
 ```ruby
-# in lib/jasmine_rails/spec_runner_helper.rb
+# in lib/jasmine_rails/spec_helper.rb
 module JasmineRails
-  module SpecRunnerHelper
+  module SpecHelper
     def custom_function
       "hello world"
     end
@@ -144,11 +144,10 @@ Create a custom layout in app/views/layouts/jasmine_rails/spec_runner.html.erb a
 If you wanted to do something like this using [requirejs-rails](https://github.com/jwhitley/requirejs-rails), your helper
 might look like this:
 
-```
-
-# in lib/jasmine_rails/spec_runner_helper.rb
-Module JasmineRails
-  Module SpecRunnerHelper
+```ruby
+# in lib/jasmine_rails/spec_helper.rb
+module JasmineRails
+  module SpecHelper
     # Gives us access to the require_js_include_tag helper
     include RequirejsHelper
   end
