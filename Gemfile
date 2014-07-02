@@ -1,4 +1,4 @@
- "https://rubygems.org"
+source "https://rubygems.org"
 
 # Declare your gem's dependencies in jasmine-rails.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
