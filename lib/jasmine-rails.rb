@@ -26,6 +26,11 @@ module JasmineRails
       [paths].flatten.collect { |path| Rails.root.join(path) }
     end
 
+    def include_dir
+      paths = jasmine_config['include_dir']
+      [paths].flatten.compact.collect { |path| Rails.root.join(path) }
+    end
+
     def tmp_dir
       path = jasmine_config['tmp_dir'] || JasmineRails::DEFAULT_TMP_DIR
       Rails.root.join(path)
