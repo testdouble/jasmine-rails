@@ -75,6 +75,30 @@ describe('Foo', function() {
 ```
 \*As noted above, spec_helper and foo.js must be required in order for foo_spec.js to run.
 
+## Spec files in engine
+
+If you have an engine mounted in your project and you need to test the engine's javascript files,
+you can instruct jasmine to include and run the spec files from that engine directory.
+
+Given your main project is located in `/workspace/my_project` and your engine in `/workspace/engine`,
+you can add the following in the the `jasmine.yml` file:
+
+```yaml
+spec_dir:
+  - spec/javascripts
+  - ../engine/spec/javascripts
+```
+
+## Include javascript from external source
+
+If you need to test javascript files that are not part of the assets pipeline (i.e if you have a mobile application
+that resides outside of your rails app) you can add the following in the the `jasmine.yml` file:
+
+```yaml
+include_dir:
+  - ../mobile_app/public/js
+```
+
 ## Running from the command line
 
 If you were to run:

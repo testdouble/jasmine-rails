@@ -3,6 +3,12 @@
 # defaults to app/assets/javascripts
 src_dir: "app/assets/javascripts"
 
+# path to additional directory of source file that are not part of assets pipeline and need to be included
+# relative path from Rails.root
+# defaults to []
+# include_dir:
+#   - ../mobile_app/public/js
+
 # path to parent directory of css_files
 # relative path from Rails.root
 # defaults to app/assets/stylesheets
@@ -19,6 +25,12 @@ css_files:
 
 # path to parent directory of spec_files
 # relative path from Rails.root
+#
+# Alternatively accept an array of directory to include external spec files
+# spec_dir:
+#   - spec/javascripts
+#   - ../engine/spec/javascripts
+#
 # defaults to spec/javascripts
 spec_dir: spec/javascripts
 
