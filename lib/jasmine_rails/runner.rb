@@ -10,12 +10,14 @@ module JasmineRails
           require 'phantomjs'
           require 'fileutils'
 
-          include_offline_asset_paths_helper
-          html = get_spec_runner(spec_filter, reporters)
-          FileUtils.mkdir_p JasmineRails.tmp_dir
-          runner_path = JasmineRails.tmp_dir.join('runner.html')
-          asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
-          File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
+          # include_offline_asset_paths_helper
+          # html = get_spec_runner(spec_filter, reporters)
+          # FileUtils.mkdir_p JasmineRails.tmp_dir
+          # runner_path = JasmineRails.tmp_dir.join('runner.html')
+          # asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
+          # File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
+
+          runner_path = "http://localhost:3000/specs"
 
           phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
           run_cmd %{"#{Phantomjs.path}" "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
