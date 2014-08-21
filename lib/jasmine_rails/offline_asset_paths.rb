@@ -19,7 +19,7 @@ module JasmineRails
     def compute_public_path_with_offline_asset(source, dir, options={})
       return compute_public_path_without_offline_asset(source, dir, options) if JasmineRails::OfflineAssetPaths.disabled
       source = source.to_s
-      return source if source.starts_with?('/')
+      return source if source.empty? || source.starts_with?('/')
       content = Rails.application.assets[source].to_s
       asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
       source_path = JasmineRails.tmp_dir.join(asset_prefix).join(source)
