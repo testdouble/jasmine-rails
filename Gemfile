@@ -10,6 +10,7 @@ gem 'rails', '~> 4.0'
 gem "jquery-rails"
 gem "sqlite3"
 gem 'coffee-script'
+gem 'capybara'
 
 group :test do
   gem 'rspec-rails'

@@ -36,6 +36,11 @@ module JasmineRails
       Rails.root.join(path)
     end
 
+    def support_dir
+      paths = jasmine_config['support_dir'] || 'support_dir'
+      [paths].flatten.collect { |path| Rails.root.join(path) }
+    end
+
     def reporter_files(types_string)
       types = types_string.to_s.split(',')
 
@@ -89,6 +94,11 @@ module JasmineRails
     # force ssl when loading the test runner. Set to true if your app forces SSL
     def force_ssl
       jasmine_config['force_ssl'] || false
+    end
+
+    def custom_boot
+      return false if jasmine_config['boot_script'] == nil
+      jasmine_config['boot_script']
     end
 
     private

@@ -48,3 +48,8 @@ spec_files:
 # (spec runner and asset cache)
 # defaults to tmp/jasmine
 tmp_dir: "tmp/jasmine"
+
+# Custom jasmine boot.js
+# (optional)
+#support_dir: "spec/javascripts/support"
+#boot_script: "rjs-boot.js"

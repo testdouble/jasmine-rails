@@ -6,19 +6,29 @@ module JasmineRails
       # Run the Jasmine testsuite via phantomjs CLI
       # raises an exception if any errors are encountered while running the testsuite
       def run(spec_filter = nil, reporters = 'console')
-        override_rails_config do
-          require 'phantomjs'
-          require 'fileutils'
+        require 'phantomjs'
+        require 'fileutils'
+        phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
 
-          include_offline_asset_paths_helper
-          html = get_spec_runner(spec_filter, reporters)
-          FileUtils.mkdir_p JasmineRails.tmp_dir
-          runner_path = JasmineRails.tmp_dir.join('runner.html')
-          asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
-          File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
+        if defined?(Requirejs)
+          require 'capybara'
 
-          phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
-          run_cmd %{"#{Phantomjs.path}" "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
+          Capybara::Server.new(Rails.application, 3000, '0.0.0.0').tap do |server|
+            server.boot
+            run_cmd %{"#{Phantomjs.path}" "#{phantomjs_runner_path}" "http://127.0.0.1:3000/specs?reporters=console&spec=#{spec_filter}"}
+          end
+        else
+
+          override_rails_config do
+
+            include_offline_asset_paths_helper
+            html = get_spec_runner(spec_filter, reporters)
+            FileUtils.mkdir_p JasmineRails.tmp_dir
+            runner_path = JasmineRails.tmp_dir.join('runner.html')
+            asset_prefix = Rails.configuration.assets.prefix.gsub(/\A\//,'')
+            File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
+            run_cmd %{"#{Phantomjs.path}" "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
+          end
         end
       end
 
