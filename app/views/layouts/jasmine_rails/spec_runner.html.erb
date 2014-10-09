@@ -10,5 +10,15 @@
   <body data-no-turbolink>
     <div id="jasmine_content"></div>
     <%= yield %>
+
+    <%= requirejs_include_tag if requirejs_spec_loading? %>
+    <% if requirejs_spec_loading? %>
+      <script type="text/javascript">
+      // jshint ignore: start
+        require(<%= jasmine_spec_files.map { |file| "#{javascript_path file}"}.to_s.html_safe %>, function (){
+          window.executeTests();
+        });
+      </script>
+    <% end %>
   </body>
 </html>

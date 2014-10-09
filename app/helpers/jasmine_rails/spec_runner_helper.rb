@@ -23,16 +23,29 @@ module JasmineRails
       files = Jasmine::Core.js_files
       files << jasmine_boot_file
       files += JasmineRails.reporter_files params[:reporters]
-      files << 'jasmine-specs.js'
+      files << 'jasmine-specs.js' unless requirejs_spec_loading?
       files
     end
 
+    def jasmine_spec_files
+      JasmineRails.spec_files
+    end
+
     def jasmine_boot_file
-      if jasmine2?
+      if JasmineRails.custom_boot
+        JasmineRails.custom_boot
+
+      elsif jasmine2?
         Jasmine::Core.boot_files.first
+
       else
         'jasmine-boot.js'
+
       end
+    end
+
+    def requirejs_spec_loading?
+      defined?(Requirejs) ? true : false
     end
 
     def jasmine2?

@@ -180,35 +180,29 @@ end
 
 Remove any reference to `src_files` in `spec/javascripts/support/jasmine.yml`, to ensure files aren't loaded prematurely.
 
-Create your custom layout `app/views/layouts/jasmine_rails/spec_runner.html.erb` like so:
-```erb
+The new default layout is designed to allow requirejs to do its job. The only change now required is to enable the custom rjs-boot.js
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
-    <title>Jasmine Specs</title>
-
-    <%= stylesheet_link_tag *jasmine_css_files %>
-    <%= requirejs_include_tag %>
-    <%= javascript_include_tag *jasmine_js_files %>
-  </head>
-  <body>
-    <div id="jasmine_content"></div>
-    <%= yield %>
-  </body>
-</html>
-
+```yaml
+# in spec/javascripts/support/jasmine.yml
+# Uncomment the following:
+support_dir: "spec/javascripts/support"
+boot_script: "rjs-boot.js"
 ```
 
-Use require with a callback to load your components:
+Use require to any test dependencies.
 
-```coffeescript
+```javascript
+// spec/javascripts/my-module.spec.js
 
-describe 'test my module', ->
-  require ['my/module'], (Module) ->
-    it 'does something', ->
-      expect(Module.method).toEqual 'something'
+define([
+  'my/module'
+], function (myModule) {
+  describe('test my module', function() {
+    it('Should...', function (){
+      ...
+    });
+  });
+});
 ```
 
 ### Custom Reporter
