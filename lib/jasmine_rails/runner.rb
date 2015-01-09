@@ -7,7 +7,7 @@ module JasmineRails
       # raises an exception if any errors are encountered while running the testsuite
       def run(spec_filter = nil, reporters = 'console')
         override_rails_config do
-          require 'phantomjs'
+          require 'phantomjs' if JasmineRails.use_phantom_gem?
           require 'fileutils'
 
           include_offline_asset_paths_helper
@@ -18,7 +18,8 @@ module JasmineRails
           File.open(runner_path, 'w') {|f| f << html.gsub("/#{asset_prefix}", "./#{asset_prefix}")}
 
           phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
-          run_cmd %{"#{Phantomjs.path}" "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
+          phantomjs_cmd = JasmineRails.use_phantom_gem? ? Phantomjs.path : 'phantomjs'
+          run_cmd %{"#{phantomjs_cmd}" "#{phantomjs_runner_path}" "#{runner_path.to_s}?spec=#{spec_filter}"}
         end
       end
 
