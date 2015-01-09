@@ -237,3 +237,16 @@ default, and you can explicitly use it by the name `console`.
 See [jasmine-junitreporter][j-junit] for an example with JUnit output.
 
 [j-junit]: https://github.com/shepmaster/jasmine-junitreporter-gem
+
+## PhantomJS binary
+
+By default the [PhantomJS gem](https://github.com/colszowka/phantomjs-gem) will
+be responsible for finding and using an appropriate version of PhantomJS. If
+however, you wish to manage your own phantom executable you can set:
+
+```yml
+use_phantom_gem: false
+```
+
+This will then try and use the `phantom` executable on the current `PATH`.
+
