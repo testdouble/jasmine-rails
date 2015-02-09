@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency "railties", ">= 3.1.0"
   s.add_dependency "sprockets-rails"
   s.add_dependency "jasmine-core", [">= 1.3", "< 3.0"]
-  s.add_dependency "phantomjs"
+  s.add_dependency "phantomjs", "< 2.0"
   s.add_development_dependency 'testbeds'
 end
