@@ -96,6 +96,11 @@ module JasmineRails
       jasmine_config['use_phantom_gem'].nil? || jasmine_config['use_phantom_gem'] == true
     end
 
+    # change the host for the test runner
+    def host
+      jasmine_config['host'] || 'localhost'
+    end
+
     private
 
     def css_dir
