@@ -13,7 +13,7 @@ module JasmineRails
       raise 'JasmineRails::Engine has not been mounted. Try adding `mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)` to routes.rb' unless route
       path = route.path
 
-      # Rails 3.1 support
+      # Rails 3.1 support -- TODO: safe to delete for 3.2?
       if path.is_a?(String)
         path
       else
