@@ -10,7 +10,7 @@ export -f install_gems
 function run_tests(){
   local version=$1
   export BUNDLE_GEMFILE="gemfiles/rails-$version"
-  bundle exec rake testbed:current:all
+  RAILS_ENV=test bundle exec rake testbed:current:all
 }
 export -f run_tests
 
