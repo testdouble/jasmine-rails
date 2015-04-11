@@ -14,3 +14,6 @@ helpers:
 
 spec_files:
   - "**/*[Ss]pec.{js,coffee}"
+
+# Uncomment this to run tests with the PATH phantomjs
+#use_phantom_gem: false
