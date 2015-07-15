@@ -249,3 +249,14 @@ use_phantom_gem: false
 ```
 
 This will then try and use the `phantom` executable on the current `PATH`.
+
+## PhantomJS command-line options
+
+If you want to pass command-line options to phantomjs executable, you can set:
+
+```yml
+phantom_options: --web-security=no
+```
+
+This will pass everything defined on `phantom_options` as
+[options](http://phantomjs.org/api/command-line.html).
