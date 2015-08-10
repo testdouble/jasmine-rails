@@ -17,7 +17,7 @@ css_dir: "app/assets/stylesheets"
 # list of file expressions to include as source files
 # relative path from src_dir
 src_files:
- - "application.{js.coffee,js,coffee}"
+  - "application.{js.coffee,js,coffee}"
 
 # list of file expressions to include as css files
 # relative path from css_dir
