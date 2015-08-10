@@ -96,6 +96,10 @@ module JasmineRails
       jasmine_config['use_phantom_gem'].nil? || jasmine_config['use_phantom_gem'] == true
     end
 
+    def phantom_options
+      jasmine_config['phantom_options'].to_s.strip
+    end
+
     private
 
     def css_dir
