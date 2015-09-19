@@ -1,4 +1,5 @@
 rvm: 2.0.0
+sudo: false
 
 before_install:
   - "export DISPLAY=:99.0"
