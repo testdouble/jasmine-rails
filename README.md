@@ -53,7 +53,7 @@ The jasmine-rails gem fully supports the Rails asset pipeline which means you ca
 **If you choose to use the asset pipeline support, many of the `jasmine.yml`
 configurations become unnecessary** and you can rely on the Rails asset
 pipeline to do the hard work of controlling what files are included in
-your testsuite.
+your test suite.
 
 ```yaml
 # minimalist jasmine.yml configuration when leveraging asset pipeline
@@ -103,7 +103,7 @@ include_dir:
 
 If you were to run:
 
-    RAILS_ENV=test bundle exec rake spec:javascript
+    bundle exec rake spec:javascript
 
 You'd hopefully see something like:
 
@@ -113,14 +113,14 @@ You'd hopefully see something like:
 
 You can filter execution by passing the `SPEC` option as well:
 
-    RAILS_ENV=test bundle exec rake spec:javascript SPEC=my_test
+    bundle exec rake spec:javascript SPEC=my_test
 
 If you experience an error at this point, the most likely cause is JavaScript being loaded out of order, or otherwise conflicting with other existing JavaScript in your project. See "Debugging" below.
 
 ## Running from your browser
 
 Startup your Rails server (ex: `bundle exec rails s`), and navigate to the path you have configured in your routes.rb file (ex: [http://localhost:3000/specs](http://localhost:3000/specs)).
-The Jasmine spec runner should appear and start running your testsuite instantly.
+The Jasmine spec runner should appear and start running your test suite instantly.
 
 ## Debugging
 
@@ -228,7 +228,7 @@ reporters:
 Then, specify which reporters to use when you run the rake task:
 
 ```
-RAILS_ENV=test REPORTERS='cool-reporter,awesome-reporter' rake spec:javascripts
+REPORTERS='cool-reporter,awesome-reporter' rake spec:javascripts
 ```
 
 The console reporter shipped with jasmine-rails will be used by
