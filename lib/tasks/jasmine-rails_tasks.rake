@@ -8,7 +8,7 @@ namespace :spec do
       reporters = ENV.fetch('REPORTERS', 'console')
       JasmineRails::Runner.run spec_filter, reporters
     else
-      system("RAILS_ENV=test bundle exec rake spec:javascript")
+      system("RAILS_ENV=test bundle exec rake #{ARGV.join(' ')}")
     end
   end
 
