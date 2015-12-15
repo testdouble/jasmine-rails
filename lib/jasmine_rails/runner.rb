@@ -43,13 +43,15 @@ module JasmineRails
       def override_rails_config
         config = Rails.application.config
 
-        original_assets_debug = config.assets.debug
+        original_assets_config = [config.assets.debug, config.assets.compres, config.assets.compile]
         original_assets_host = ActionController::Base.asset_host
         config.assets.debug = false
+        config.assets.compres = false
+        config.assets.compile = false
         ActionController::Base.asset_host = nil
         yield
       ensure
-        config.assets.debug = original_assets_debug
+        config.assets.debug, config.assets.compres, config.assets.compile = original_assets_config
         ActionController::Base.asset_host = original_assets_host
       end
 
@@ -58,13 +60,31 @@ module JasmineRails
         app.https!(JasmineRails.force_ssl)
         path = JasmineRails.route_path
         JasmineRails::OfflineAssetPaths.disabled = false
+        
+        preload_spec_fixtures app
         app.get path, :reporters => reporters, :spec => spec_filter
+       
         JasmineRails::OfflineAssetPaths.disabled = true
         unless app.response.success?
           raise "Jasmine runner at '#{path}' returned a #{app.response.status} error: #{app.response.message} \n\n" +
                 "The most common cause is an asset compilation failure. Full HTML response: \n\n #{app.response.body}"
         end
         app.response.body
+      end
+
+      def preload_spec_fixtures app
+        JasmineRails.fixtures_preload.each do |fixture_filename|
+          fixture_path = "#{JasmineRails.route_path}/#{JasmineRails.fixtures_path}/#{fixture_filename}"
+          app.get fixture_path
+
+          unless app.response.success?
+            raise "Fixture preloading '#{fixture_filename}' returned a #{app.response.status} error: #{app.response.message} \n\n"
+          end
+
+          fixture_tmp_path = "#{JasmineRails.tmp_dir}#{fixture_path}"
+          FileUtils.mkdir_p File.dirname(fixture_tmp_path)
+          File.open(fixture_tmp_path, 'w') {|f| f << app.response.body }
+        end
       end
 
       def run_cmd(cmd)

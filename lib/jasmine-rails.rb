@@ -100,6 +100,22 @@ module JasmineRails
       jasmine_config['phantom_options'].to_s.strip
     end
 
+    # Provide a path to 
+    def fixtures_dir
+      path = jasmine_config['fixtures_dir'] || 'spec/javascripts/fixtures'
+      Rails.root.join(path)
+    end
+
+    # define a path that fixtures should be served from
+    def fixtures_path
+      jasmine_config['fixtures_path'] || fixtures_dir
+    end
+
+    # define which fixtures to preload on phantom execution
+    def fixtures_preload
+      jasmine_config['fixtures_preload'] || []
+    end
+
     private
 
     def css_dir
