@@ -43,21 +43,23 @@ module JasmineRails
       def override_rails_config
         config = Rails.application.config
 
-        original_assets_config = [config.assets.debug, config.assets.compres, config.assets.compile]
+        original_assets_debug = config.assets.debug
+        original_assets_environment = ActionView::Base.assets_environment
+        ActionView::Base.assets_environment = nil
         original_assets_host = ActionController::Base.asset_host
         config.assets.debug = false
-        config.assets.compres = false
-        config.assets.compile = false
         ActionController::Base.asset_host = nil
         yield
       ensure
-        config.assets.debug, config.assets.compres, config.assets.compile = original_assets_config
+        config.assets.debug = original_assets_debug
+        ActionView::Base.assets_environment = original_assets_environment
         ActionController::Base.asset_host = original_assets_host
       end
 
       def get_spec_runner(spec_filter, reporters)
         app = ActionDispatch::Integration::Session.new(Rails.application)
         app.https!(JasmineRails.force_ssl)
+        session_config = app.instance_variable_get(:@app).config.assets
         path = JasmineRails.route_path
         JasmineRails::OfflineAssetPaths.disabled = false
         

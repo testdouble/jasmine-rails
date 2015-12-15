@@ -108,7 +108,7 @@ module JasmineRails
 
     # define a path that fixtures should be served from
     def fixtures_path
-      jasmine_config['fixtures_path'] || fixtures_dir
+      jasmine_config['fixtures_path'] || 'javascripts/fixtures'
     end
 
     # define which fixtures to preload on phantom execution
