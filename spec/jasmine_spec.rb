@@ -5,6 +5,7 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 require 'jasmine_rails/rspec'
+require 'jasmine-core/version'
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
@@ -20,10 +21,18 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 end
 
+def jasmine_maijor_version
+  Jasmine::Core::VERSION.split('.').first.to_i
+end
+
 describe "Jasmine" do
   specify do
     visit '/specs'
-    find('.bar.passed,.bar.passingAlert')
+    if jasmine_maijor_version >= 2
+      find('.jasmine-bar.jasmine-passed,.jasmine-bar.jasmine-passingAlert')
+    else
+      find('.bar.passed,.bar.passingAlert')
+    end
   end
 end
 

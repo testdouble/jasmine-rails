@@ -26,11 +26,15 @@ module JasmineRails
 
       private
       def include_offline_asset_paths_helper
-        if Rails::VERSION::MAJOR >= 4
+        if rails_4_or_later?
           Sprockets::Rails::Helper.send :include, JasmineRails::OfflineAssetPaths
         else
           ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
         end
+      end
+
+      def rails_4_or_later?
+        Rails::VERSION::MAJOR >= 4
       end
 
       # temporarily override internal rails settings for the given block
@@ -40,7 +44,28 @@ module JasmineRails
       # is built into one JS file
       # * disable asset host so that generated runner.html file uses
       # relative paths to included javascript files
-      def override_rails_config
+      def override_rails_config &block
+        if rails_4_or_later?
+          override_rails_4_config &block
+        else
+          override_rails_3_config &block
+        end
+      end
+
+      def override_rails_3_config
+        config = Rails.application.config
+
+        original_assets_debug = config.assets.debug
+        original_assets_host = ActionController::Base.asset_host
+        config.assets.debug = false
+        ActionController::Base.asset_host = nil
+        yield
+      ensure
+        config.assets.debug = original_assets_debug
+        ActionController::Base.asset_host = original_assets_host
+      end
+
+      def override_rails_4_config
         config = Rails.application.config
 
         original_assets_debug = config.assets.debug
