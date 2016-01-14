@@ -13,6 +13,7 @@ gem 'coffee-script'
 
 group :test do
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'capybara'
   gem 'poltergeist'
   gem 'pry'
