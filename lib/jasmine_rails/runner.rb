@@ -100,8 +100,8 @@ module JasmineRails
       end
 
       def preload_spec_fixtures app
-        JasmineRails.fixtures_preload.each do |fixture_filename|
-          fixture_path = "#{JasmineRails.route_path}/#{JasmineRails.fixtures_path}/#{fixture_filename}"
+        JasmineRails.html_fixtures.each do |fixture_filename|
+          fixture_path = File.join(JasmineRails.route_path, JasmineRails.fixtures_path, fixture_filename)
           app.get fixture_path
 
           unless app.response.success?

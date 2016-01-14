@@ -15,6 +15,7 @@ gem 'jasmine-core', '~> 2.0'
 
 group :test do
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'capybara'
   gem 'poltergeist'
   gem 'pry'

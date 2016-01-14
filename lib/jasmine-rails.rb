@@ -112,8 +112,8 @@ module JasmineRails
     end
 
     # define which fixtures to preload on phantom execution. They will be requested from fixtures path.
-    def fixtures_preload
-      jasmine_config['fixtures_preload'] || []
+    def html_fixtures
+      jasmine_config['html_fixtures'] || []
     end
 
     private

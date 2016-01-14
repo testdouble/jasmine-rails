@@ -25,6 +25,17 @@ def jasmine_maijor_version
   Jasmine::Core::VERSION.split('.').first.to_i
 end
 
+def create_fixture_file(file_name, content = rendered)
+  fixture_path = File.join(JasmineRails.fixtures_dir, file_name)
+  fixture_directory = File.dirname(fixture_path)
+  FileUtils.mkdir_p fixture_directory unless File.exists?(fixture_directory)
+
+  File.open(fixture_path, 'w') do |file|
+    file.puts(content)
+  end
+end
+
+
 describe "Jasmine" do
   specify do
     visit '/specs'
@@ -51,6 +62,45 @@ describe JasmineRails::SaveFixture do
     end
     it 'ignores spec/javascripts/fixtures/generated directory from version control' do
       expect(File.read(Rails.root.join('spec/javascripts/fixtures/.gitignore'))).to include "generated"
+    end
+  end
+end
+
+describe "JasmineRails::HtmlFixtures" do
+  describe 'Save html fixture' do
+    let(:jasmine_config) do
+      {
+        'fixtures_path' => 'spec/javascripts/fixtures',
+        'tmp_dir' => Rails.root.join('tmp/jasmine'),
+        'html_fixtures' => ['example.html']
+      }
+    end
+    let(:rendered_fixture) do
+      File.join(JasmineRails.tmp_dir, JasmineRails.route_path, JasmineRails.fixtures_path, 'example.html')
+    end
+    let(:fixture_contents) { '<div class="generated_content">sample generated fixture</div>' }
+    
+    before do
+      allow(JasmineRails).to receive(:jasmine_config).and_return(jasmine_config)
+      create_fixture_file 'example.html', fixture_contents
+
+      JasmineRails::OfflineAssetPaths.disabled = false
+    end
+
+    after do
+      require 'fileutils'
+      FileUtils.rm_rf JasmineRails.fixtures_dir
+      FileUtils.rm_rf JasmineRails.tmp_dir
+
+      JasmineRails::OfflineAssetPaths.disabled = true
+    end
+
+    it 'render files to tmp/jasmine' do
+      app = ActionDispatch::Integration::Session.new(Rails.application)
+      JasmineRails::OfflineAssetPaths.disabled = false
+      
+      JasmineRails::Runner.send(:preload_spec_fixtures, app)
+      expect(File.read(rendered_fixture)).to include fixture_contents
     end
   end
 end
