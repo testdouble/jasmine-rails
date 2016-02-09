@@ -260,3 +260,4 @@ phantom_options: --web-security=no
 
 This will pass everything defined on `phantom_options` as
 [options](http://phantomjs.org/api/command-line.html).
+
