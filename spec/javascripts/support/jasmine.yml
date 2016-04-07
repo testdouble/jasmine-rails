@@ -1,5 +1,5 @@
-src_dir: "../../fixtures/app/assets/javascripts"
-css_dir: "../../fixtures/app/assets/stylesheets"
+src_dir: "../spec/fixtures/app/assets/javascripts"
+css_dir: "../spec/fixtures/app/assets/stylesheets"
 
 src_files:
  - "application.{js,coffee}"
@@ -7,7 +7,7 @@ src_files:
 css_files:
  - "support.{css,css.sass}"
 
-spec_dir: ../../javascripts
+spec_dir: ../spec/javascripts
 
 helpers:
   - "helpers/**/*.{js,coffee}"

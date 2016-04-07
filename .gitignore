@@ -3,12 +3,11 @@ log/*.log
 pkg/
 *.gem
 .DS_Store
-.jhw-cache
 tmp
 log
 *.sqlite3
 chromedriver.log
 Gemfile.lock
-spec/testbeds
 /gemfiles/*.lock
 /.ruby-version
+/example-app
