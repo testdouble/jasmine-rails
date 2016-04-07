@@ -7,7 +7,7 @@ module JasmineRails
     mattr_accessor :disabled
     extend ActiveSupport::Concern
     included do
-      if ::Rails::VERSION::MAJOR == 4
+      if ::Rails::VERSION::MAJOR >= 4
         alias_method :compute_public_path, :compute_asset_path
         alias_method :compute_asset_path_with_offline_asset, :compute_public_path_with_offline_asset
         alias_method_chain :compute_asset_path, :offline_asset
@@ -27,7 +27,7 @@ module JasmineRails
       FileUtils.mkdir_p File.dirname(source_path)
       Rails.logger.debug "Compiling #{source} to #{source_path}"
       File.open(source_path, 'wb') do |f|
-        if Rails::VERSION::MAJOR == 4 && !Rails.env.test? && source == 'jasmine-specs.js'
+        if Rails::VERSION::MAJOR >= 4 && !Rails.env.test? && source == 'jasmine-specs.js'
           f << ''
         else
           f << content
