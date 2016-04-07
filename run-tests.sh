@@ -20,6 +20,7 @@ install_gems "3.2"
 install_gems "4.0"
 install_gems "4.0-jasmine-2"
 install_gems "4.1"
+install_gems "5.0"
 
 mkdir -p spec/testbeds
 export BUNDLE_GEMFILE=""
@@ -29,3 +30,4 @@ run_tests "3.2"
 run_tests "4.0"
 run_tests "4.0-jasmine-2"
 run_tests "4.1"
+run_tests "5.0"
