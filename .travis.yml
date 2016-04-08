@@ -1,7 +1,7 @@
 language: ruby
 rvm:
   - 2.0
-  - 2.3
+  - 2.3.0
 gemfile:
   - gemfiles/rails-3.2
   - gemfiles/rails-4.0
@@ -20,12 +20,12 @@ matrix:
   exclude:
     - rvm: 2.0
       gemfile: gemfiles/rails-5.0
-    - rvm: 2.3
+    - rvm: 2.3.0
       gemfile: gemfiles/rails-3.2
-    - rvm: 2.3
+    - rvm: 2.3.0
       gemfile: gemfiles/rails-4.0
-    - rvm: 2.3
+    - rvm: 2.3.0
       gemfile: gemfiles/rails-4.0-jasmine-2
-    - rvm: 2.3
+    - rvm: 2.3.0
       gemfile: gemfiles/rails-4.1
 
