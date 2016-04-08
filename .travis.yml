@@ -1,10 +1,31 @@
-rvm: 2.0.0
-sudo: false
+language: ruby
+rvm:
+  - 2.0
+  - 2.3.0
+gemfile:
+  - gemfiles/rails-3.2
+  - gemfiles/rails-4.0
+  - gemfiles/rails-4.0-jasmine-2
+  - gemfiles/rails-4.1
+  - gemfiles/rails-5.0
 
+sudo: false
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
-install: ''
+script: './run-tests.rb'
 
-script: "./run-tests.sh"
+matrix:
+  exclude:
+    - rvm: 2.0
+      gemfile: gemfiles/rails-5.0
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails-3.2
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails-4.0
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails-4.0-jasmine-2
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails-4.1
+

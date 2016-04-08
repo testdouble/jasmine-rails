@@ -1,5 +1,5 @@
 ENV["RAILS_ENV"] ||= 'test'
-require Rails.root.join('config/environment')
+require_relative '../example-app/config/environment'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'

@@ -1,0 +1,19 @@
+source 'https://rubygems.org'
+
+gemspec path: File.expand_path('..', File.dirname(__FILE__))
+
+gem 'rails', '5.0.0.beta3'
+gem 'coffee-rails'
+gem 'sass-rails'
+
+gem 'jquery-rails'
+gem 'sqlite3'
+
+gem 'jasmine-core'
+
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'pry'
+end
