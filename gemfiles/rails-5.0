@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec path: File.expand_path('..', File.dirname(__FILE__))
 
-gem 'rails', '5.0.0.beta3'
+gem 'rails', '~> 5.0.0'
 gem 'coffee-rails'
 gem 'sass-rails'
 
@@ -10,6 +10,10 @@ gem 'jquery-rails'
 gem 'sqlite3'
 
 gem 'jasmine-core'
+
+group :development do
+  gem 'listen'
+end
 
 group :test do
   gem 'rspec-rails'
