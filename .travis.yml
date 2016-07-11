@@ -8,6 +8,7 @@ gemfile:
   - gemfiles/rails-4.0-jasmine-2
   - gemfiles/rails-4.1
   - gemfiles/rails-5.0
+  - gemfiles/rails-5-sprockets-4
 
 sudo: false
 before_install:
@@ -20,6 +21,8 @@ matrix:
   exclude:
     - rvm: 2.0
       gemfile: gemfiles/rails-5.0
+    - rvm: 2.0
+      gemfile: gemfiles/rails-5-sprockets-4
     - rvm: 2.3.0
       gemfile: gemfiles/rails-3.2
     - rvm: 2.3.0
