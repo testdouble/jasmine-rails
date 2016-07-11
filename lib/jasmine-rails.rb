@@ -57,6 +57,12 @@ module JasmineRails
         files += filter_files dir, jasmine_config['helpers']
         files += filter_files dir, jasmine_config['spec_files']
       end
+
+      # Sprockets 4 wants "logical paths" not to include file extensions
+      if defined?(Sprockets) && Sprockets::VERSION.to_f >= 4
+        files = files.map { |f| f.chomp(File.extname f) }
+      end
+
       files
     end
 
