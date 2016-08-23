@@ -11,8 +11,8 @@ puts '<--- Creating app'
 run 'rm -rf example-app'
 run 'bundle exec rails new example-app --skip-gemfile --skip-bundle'
 Dir.chdir('example-app')
-run 'bundle exec rails plugin new myengine --full --skip-gemspec'
-FileUtils.mkdir_p 'myengine/spec/javascripts'
+run 'bundle exec rails plugin new engines/myengine --full --skip-gemspec'
+FileUtils.mkdir_p 'engines/myengine/spec/javascripts'
 
 puts '<--- Preparing app'
 run 'rails g jasmine_rails:install'
