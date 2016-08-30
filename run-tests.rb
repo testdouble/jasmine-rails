@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
+
 def run(cmd)
   system(cmd)
   raise "`#{cmd}` exited non-zero (#{$?}). Exiting." if $? != 0
@@ -9,6 +11,8 @@ puts '<--- Creating app'
 run 'rm -rf example-app'
 run 'bundle exec rails new example-app --skip-gemfile --skip-bundle'
 Dir.chdir('example-app')
+run 'bundle exec rails plugin new engines/myengine --full --skip-gemspec'
+FileUtils.mkdir_p 'engines/myengine/spec/javascripts'
 
 puts '<--- Preparing app'
 run 'rails g jasmine_rails:install'

@@ -7,7 +7,9 @@ src_files:
 css_files:
  - "support.{css,css.sass}"
 
-spec_dir: ../spec/javascripts
+spec_dir: 
+  - "../spec/javascripts"
+  - "../engines/*/spec/javascripts"
 
 helpers:
   - "helpers/**/*.{js,coffee}"
