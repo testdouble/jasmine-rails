@@ -58,7 +58,13 @@ module JasmineRails
         app.https!(JasmineRails.force_ssl)
         path = JasmineRails.route_path
         JasmineRails::OfflineAssetPaths.disabled = false
-        app.get path, :reporters => reporters, :spec => spec_filter
+
+        if Rails::VERSION::MAJOR >= 5
+          app.get path, :params => { :reporters => reporters, :spec => spec_filter }
+        else
+          app.get path, :reporters => reporters, :spec => spec_filter
+        end
+
         JasmineRails::OfflineAssetPaths.disabled = true
         unless app.response.success?
           raise "Jasmine runner at '#{path}' returned a #{app.response.status} error: #{app.response.message} \n\n" +
