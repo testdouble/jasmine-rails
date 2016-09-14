@@ -23,7 +23,11 @@ module JasmineRails
       files = Jasmine::Core.js_files
       files << jasmine_boot_file
       files += JasmineRails.reporter_files params[:reporters]
-      files += JasmineRails.spec_files
+      if JasmineRails.files_to_run
+        files += JasmineRails.spec_files
+      else
+        files << 'jasmine-specs.js'
+      end
       files
     end
 
