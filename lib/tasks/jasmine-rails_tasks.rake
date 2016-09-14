@@ -6,9 +6,17 @@ namespace :spec do
       require 'jasmine_rails/runner'
       spec_filter = ENV['SPEC']
       reporters = ENV.fetch('REPORTERS', 'console')
-      JasmineRails::Runner.run spec_filter, reporters
+      begin
+        if ARGV.length > 1
+          JasmineRails.files_to_run = ARGV.drop(1)
+          JasmineRails.files_to_run.each{|i| task(i.to_sym) {} }
+        end
+        JasmineRails::Runner.run spec_filter, reporters
+      ensure
+        JasmineRails.files_to_run = nil
+      end
     else
-      exec('bundle exec rake spec:javascript RAILS_ENV=test')
+      exec("RAILS_ENV=test bundle exec rake spec:javascript #{ARGV.drop(1).join(" ")}")
     end
   end
 

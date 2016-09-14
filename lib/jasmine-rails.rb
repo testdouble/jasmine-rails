@@ -5,6 +5,7 @@ module JasmineRails
   CONSOLE_REPORTERS = {'console' => ['jasmine-console-shims.js',
                                      'jasmine-console-reporter.js']}
   class << self
+    attr_accessor :files_to_run
     # return the relative path to access the spec runner
     # for the host Rails application
     # ex: /jasmine
@@ -51,11 +52,15 @@ module JasmineRails
     # * spec helpers
     # * spec_files
     def spec_files
-      files = []
-      files += filter_files src_dir, jasmine_config['src_files']
-      spec_dir.each do |dir|
-        files += filter_files dir, jasmine_config['helpers']
-        files += filter_files dir, jasmine_config['spec_files']
+      if files_to_run
+        files = files_to_run
+      else
+        files = []
+        files += filter_files src_dir, jasmine_config['src_files']
+        spec_dir.each do |dir|
+          files += filter_files dir, jasmine_config['helpers']
+          files += filter_files dir, jasmine_config['spec_files']
+        end
       end
 
       # Sprockets 4 wants "logical paths" not to include file extensions
