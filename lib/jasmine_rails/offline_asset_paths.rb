@@ -5,19 +5,9 @@
 module JasmineRails
   module OfflineAssetPaths
     mattr_accessor :disabled
-    extend ActiveSupport::Concern
-    included do
-      if ::Rails::VERSION::MAJOR >= 4
-        alias_method :compute_public_path, :compute_asset_path
-        alias_method :compute_asset_path_with_offline_asset, :compute_public_path_with_offline_asset
-        alias_method_chain :compute_asset_path, :offline_asset
-      end
 
-      alias_method_chain :compute_public_path, :offline_asset
-    end
-
-    def compute_public_path_with_offline_asset(source, dir, options={})
-      return compute_public_path_without_offline_asset(source, dir, options) if JasmineRails::OfflineAssetPaths.disabled
+    def compute_asset_path(source, dir, options={})
+      return super if JasmineRails::OfflineAssetPaths.disabled
       source = source.to_s
       return source if source.empty? || source.starts_with?('/')
       content = Rails.application.assets[source].to_s
@@ -34,6 +24,11 @@ module JasmineRails
         end
       end
       "/#{asset_prefix}/#{source}"
+    end
+
+    # For Rails 3.2 support
+    def compute_public_path(*args)
+      JasmineRails::OfflineAssetPaths.disabled ? super : compute_asset_path(*args)
     end
 
   end
