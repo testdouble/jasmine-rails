@@ -4,7 +4,7 @@ gemspec path: File.expand_path('..', File.dirname(__FILE__))
 
 # Gems used by the dummy application
 gem 'rails', '~> 4.0.0'
-gem 'mime-types-data', '< 3'
+gem 'mime-types', '< 3'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails', '~> 4.0.0'
 gem 'turbolinks'
