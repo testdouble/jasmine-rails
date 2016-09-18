@@ -9,7 +9,9 @@ gemfile:
   - gemfiles/rails-4.1
   - gemfiles/rails-5.0
   - gemfiles/rails-5-sprockets-4
-
+cache:
+  directories:
+    - .phantomjs
 sudo: false
 before_install:
   - "export DISPLAY=:99.0"
