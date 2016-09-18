@@ -11,7 +11,7 @@ gemfile:
   - gemfiles/rails-5-sprockets-4
 cache:
   directories:
-    - .phantomjs
+    - /home/travis/.phantomjs
 sudo: false
 before_install:
   - "export DISPLAY=:99.0"
