@@ -1,5 +1,7 @@
 require 'fileutils'
 
+# DEPRECATED - This feature will be removed as soon as it causes another issue
+#
 # Adds a save_fixture method takes the rendered content
 # and stores it in a fixture file to be used with jasmine.
 #
