@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/searls/jasmine-rails/tree/HEAD)
-
-[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.13.0...HEAD)
+## [v0.14.0](https://github.com/searls/jasmine-rails/tree/v0.14.0) (2016-09-18)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.13.0...v0.14.0)
 
 **Closed issues:**
 
