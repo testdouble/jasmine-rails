@@ -7,8 +7,8 @@ if Gem.ruby_version >= Gem::Version.new("2.2.2")
   require 'github_changelog_generator/task'
   GitHubChangelogGenerator::RakeTask.new :changelog
   task :changelog_commit do
-    require "suture"
-    cmd = "git commit -m \"Changelog for #{Suture::VERSION}\" -- CHANGELOG.md"
+    require_relative "lib/jasmine_rails/version"
+    cmd = "git commit -m \"Changelog for #{JasmineRails::VERSION}\" -- CHANGELOG.md"
     puts "-------> #{cmd}"
     system cmd
   end
