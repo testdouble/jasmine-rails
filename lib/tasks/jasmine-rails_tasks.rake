@@ -8,7 +8,9 @@ namespace :spec do
       reporters = ENV.fetch('REPORTERS', 'console')
       JasmineRails::Runner.run spec_filter, reporters
     else
-      exec('bundle exec rake spec:javascript RAILS_ENV=test')
+      unless system('bundle exec rake spec:javascript RAILS_ENV=test')
+        exit $?.exitstatus
+      end
     end
   end
 
