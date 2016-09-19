@@ -27,7 +27,8 @@ module JasmineRails
       private
       def prepend_offline_asset_paths_helper
         action_view = Rails::VERSION::MAJOR >= 4 ? ActionView::Base : ActionView::AssetPaths
-        action_view.send :prepend, JasmineRails::OfflineAssetPaths
+        module_extender = Gem.ruby_version >= Gem::Version.new("2") ? :prepend : :include
+        action_view.send module_extender, JasmineRails::OfflineAssetPaths
       end
 
       # temporarily override internal rails settings for the given block
