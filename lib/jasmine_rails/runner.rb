@@ -10,7 +10,7 @@ module JasmineRails
           require 'phantomjs' if JasmineRails.use_phantom_gem?
           require 'fileutils'
 
-          include_offline_asset_paths_helper
+          prepend_offline_asset_paths_helper
           html = get_spec_runner(spec_filter, reporters)
           FileUtils.mkdir_p JasmineRails.tmp_dir
           runner_path = JasmineRails.tmp_dir.join('runner.html')
@@ -25,12 +25,10 @@ module JasmineRails
       end
 
       private
-      def include_offline_asset_paths_helper
-        if Rails::VERSION::MAJOR >= 4
-          Sprockets::Rails::Helper.send :include, JasmineRails::OfflineAssetPaths
-        else
-          ActionView::AssetPaths.send :include, JasmineRails::OfflineAssetPaths
-        end
+      def prepend_offline_asset_paths_helper
+        action_view = Rails::VERSION::MAJOR >= 4 ? ActionView::Base : ActionView::AssetPaths
+        module_extender = Gem.ruby_version >= Gem::Version.new("2") ? :prepend : :include
+        action_view.send module_extender, JasmineRails::OfflineAssetPaths
       end
 
       # temporarily override internal rails settings for the given block
