@@ -35,6 +35,8 @@ matrix:
     - rvm: 2.0
       gemfile: gemfiles/rails-5-sprockets-4
     - rvm: 1.9
+      gemfile: gemfiles/rails-3.2
+    - rvm: 1.9
       gemfile: gemfiles/rails-5.0
     - rvm: 1.9
       gemfile: gemfiles/rails-5-sprockets-4
