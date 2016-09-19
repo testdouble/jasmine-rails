@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased](https://github.com/searls/jasmine-rails/tree/HEAD)
+
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.0...HEAD)
+
+**Closed issues:**
+
+- Clear Rails 5 Deprecation warnings [\#187](https://github.com/searls/jasmine-rails/issues/187)
+
+**Merged pull requests:**
+
+- Remove alias\_method\_chains for OfflineAssetPaths [\#204](https://github.com/searls/jasmine-rails/pull/204) ([searls](https://github.com/searls))
+- 1.9 [\#203](https://github.com/searls/jasmine-rails/pull/203) ([searls](https://github.com/searls))
+
 ## [v0.14.0](https://github.com/searls/jasmine-rails/tree/v0.14.0) (2016-09-18)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.13.0...v0.14.0)
 
@@ -311,6 +324,9 @@
 **Closed issues:**
 
 - jasmine-rails breaks when jasmine-jquery updates to v2 [\#106](https://github.com/searls/jasmine-rails/issues/106)
+
+## [v0.5.6](https://github.com/searls/jasmine-rails/tree/v0.5.6) (2014-02-11)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.5.6...v0.5.6)
 
 ## [v0.5.6](https://github.com/searls/jasmine-rails/tree/v0.5.6) (2014-02-11)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.5.5...v0.5.6)
