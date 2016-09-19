@@ -1,5 +1,6 @@
 language: ruby
 rvm:
+  - 1.9
   - 2.0
   - 2.3.0
 gemfile:
@@ -21,10 +22,6 @@ script: './run-tests.rb'
 
 matrix:
   exclude:
-    - rvm: 2.0
-      gemfile: gemfiles/rails-5.0
-    - rvm: 2.0
-      gemfile: gemfiles/rails-5-sprockets-4
     - rvm: 2.3.0
       gemfile: gemfiles/rails-3.2
     - rvm: 2.3.0
@@ -33,4 +30,12 @@ matrix:
       gemfile: gemfiles/rails-4.0-jasmine-2
     - rvm: 2.3.0
       gemfile: gemfiles/rails-4.1
+    - rvm: 2.0
+      gemfile: gemfiles/rails-5.0
+    - rvm: 2.0
+      gemfile: gemfiles/rails-5-sprockets-4
+    - rvm: 1.9
+      gemfile: gemfiles/rails-5.0
+    - rvm: 1.9
+      gemfile: gemfiles/rails-5-sprockets-4
 
