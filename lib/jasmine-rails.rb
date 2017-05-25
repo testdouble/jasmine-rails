@@ -122,7 +122,7 @@ module JasmineRails
       @config ||= begin
         config_file_name = ENV['JASMINE_CONFIG'] || 'jasmine.yml'
         path = Rails.root.join('config', config_file_name)
-        path = Rails.root.join('spec', 'javascripts', 'support', config_file_name) unless File.exists?(path)
+        path = Rails.root.join('spec', 'javascripts', 'support', config_file_name) unless File.exist?(path)
         initialize_jasmine_config_if_absent(path)
         require 'yaml'
         YAML.load_file(path)
