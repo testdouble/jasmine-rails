@@ -26,6 +26,10 @@ module JasmineRails
       files << 'jasmine-specs.js'
       files
     end
+    
+    def rails_root_path
+      javascript_tag "window.root_path='#{Rails.root}'"
+    end
 
     def jasmine_boot_file
       if jasmine2?
