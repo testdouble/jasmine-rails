@@ -1,8 +1,21 @@
 # Change Log
 
-## [Unreleased](https://github.com/searls/jasmine-rails/tree/HEAD)
+## [v0.14.2](https://github.com/searls/jasmine-rails/tree/v0.14.2) (2017-09-07)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.1...v0.14.2)
 
-[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.0...HEAD)
+**Closed issues:**
+
+- Trouble with running tests in terminal [\#208](https://github.com/searls/jasmine-rails/issues/208)
+- Using angular 1.3.2 will break jasmine specs [\#206](https://github.com/searls/jasmine-rails/issues/206)
+- $templateCache not being hit [\#205](https://github.com/searls/jasmine-rails/issues/205)
+
+**Merged pull requests:**
+
+- Allow to pass several options to PhantomJS via jasmine.yml. Fix \#192 [\#217](https://github.com/searls/jasmine-rails/pull/217) ([bolshakov](https://github.com/bolshakov))
+- Use File.exist? instead of File.exists? [\#210](https://github.com/searls/jasmine-rails/pull/210) ([fakefarm](https://github.com/fakefarm))
+
+## [v0.14.1](https://github.com/searls/jasmine-rails/tree/v0.14.1) (2016-09-19)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.0...v0.14.1)
 
 **Closed issues:**
 
@@ -324,9 +337,6 @@
 **Closed issues:**
 
 - jasmine-rails breaks when jasmine-jquery updates to v2 [\#106](https://github.com/searls/jasmine-rails/issues/106)
-
-## [v0.5.6](https://github.com/searls/jasmine-rails/tree/v0.5.6) (2014-02-11)
-[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.5.6...v0.5.6)
 
 ## [v0.5.6](https://github.com/searls/jasmine-rails/tree/v0.5.6) (2014-02-11)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.5.5...v0.5.6)
