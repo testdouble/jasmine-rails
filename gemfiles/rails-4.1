@@ -23,4 +23,9 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'pry'
+
+  if Gem.ruby_version < Gem::Version.new("2.0.0")
+    gem 'nokogiri', '1.6.8'
+    gem 'public_suffix', '1.4.6'
+  end
 end
