@@ -19,8 +19,8 @@ module JasmineRails
 
           phantomjs_runner_path = File.join(File.dirname(__FILE__), '..', 'assets', 'javascripts', 'jasmine-runner.js')
           phantomjs_cmd = JasmineRails.use_phantom_gem? ? Phantomjs.path : 'phantomjs'
-          phantomjs_opts = JasmineRails.phantom_options
-          run_cmd %{"#{phantomjs_cmd}" "#{phantomjs_opts}" "#{phantomjs_runner_path}" "file://#{runner_path.to_s}?spec=#{spec_filter}"}
+          phantomjs_opts = JasmineRails.phantom_options.map { |option| "#{option}" }.join(' ')
+          run_cmd %{"#{phantomjs_cmd}" #{phantomjs_opts} "#{phantomjs_runner_path}" "file://#{runner_path.to_s}?spec=#{spec_filter}"}
         end
       end
 

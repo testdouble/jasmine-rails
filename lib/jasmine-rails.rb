@@ -102,8 +102,9 @@ module JasmineRails
       jasmine_config['use_phantom_gem'].nil? || jasmine_config['use_phantom_gem'] == true
     end
 
+    # @return [Array<String>]
     def phantom_options
-      jasmine_config['phantom_options'].to_s.strip
+      jasmine_config['phantom_options'].to_s.split(/\s+/).map(&:strip)
     end
 
     private
