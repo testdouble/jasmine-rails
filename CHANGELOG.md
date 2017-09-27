@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.14.3](https://github.com/searls/jasmine-rails/tree/v0.14.3) (2017-09-27)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.2...v0.14.3)
+
+**Closed issues:**
+
+- Out of date monkey patch on `compute\_asset\_path` breaks minitest on Rails 5.0.1+ [\#213](https://github.com/searls/jasmine-rails/issues/213)
+
+**Merged pull requests:**
+
+- Drop official Ruby 1.9 support [\#219](https://github.com/searls/jasmine-rails/pull/219) ([searls](https://github.com/searls))
+- Update compute\_asset\_path to Rails 4 signature [\#214](https://github.com/searls/jasmine-rails/pull/214) ([fofr](https://github.com/fofr))
+
 ## [v0.14.2](https://github.com/searls/jasmine-rails/tree/v0.14.2) (2017-09-07)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.1...v0.14.2)
 
