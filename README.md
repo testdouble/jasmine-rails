@@ -255,7 +255,7 @@ This will then try and use the `phantom` executable on the current `PATH`.
 If you want to pass command-line options to phantomjs executable, you can set:
 
 ```yml
-phantom_options: --web-security=no
+phantom_options: --web-security=no --debug=yes
 ```
 
 This will pass everything defined on `phantom_options` as

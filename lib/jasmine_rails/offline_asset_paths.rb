@@ -6,7 +6,7 @@ module JasmineRails
   module OfflineAssetPaths
     mattr_accessor :disabled
 
-    def compute_asset_path(source, dir, options={})
+    def compute_asset_path(source, options={})
       return super if JasmineRails::OfflineAssetPaths.disabled
       source = source.to_s
       return source if source.empty? || source.starts_with?('/')
@@ -27,8 +27,8 @@ module JasmineRails
     end
 
     # For Rails 3.2 support
-    def compute_public_path(*args)
-      JasmineRails::OfflineAssetPaths.disabled ? super : compute_asset_path(*args)
+    def compute_public_path(source, dir, options={})
+      JasmineRails::OfflineAssetPaths.disabled ? super : compute_asset_path(source, options)
     end
 
   end
