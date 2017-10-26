@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.14.6](https://github.com/searls/jasmine-rails/tree/v0.14.6) (2017-10-26)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.5...v0.14.6)
+
+**Merged pull requests:**
+
+- always use console log instead of error [\#224](https://github.com/searls/jasmine-rails/pull/224) ([fmachella](https://github.com/fmachella))
+
 ## [v0.14.5](https://github.com/searls/jasmine-rails/tree/v0.14.5) (2017-10-26)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.4...v0.14.5)
 
