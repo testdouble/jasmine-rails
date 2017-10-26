@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.14.5](https://github.com/searls/jasmine-rails/tree/v0.14.5) (2017-10-26)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.4...v0.14.5)
+
+**Closed issues:**
+
+- Unable to run Jasmine tests with fixtures [\#123](https://github.com/searls/jasmine-rails/issues/123)
+
+**Merged pull requests:**
+
+- phantom2 needs newline after address \(fixes \#212\) [\#223](https://github.com/searls/jasmine-rails/pull/223) ([fmachella](https://github.com/fmachella))
+
+## [v0.14.4](https://github.com/searls/jasmine-rails/tree/v0.14.4) (2017-10-26)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.3...v0.14.4)
+
+**Merged pull requests:**
+
+- rails root path for jasmine jquery [\#216](https://github.com/searls/jasmine-rails/pull/216) ([fmachella](https://github.com/fmachella))
+
 ## [v0.14.3](https://github.com/searls/jasmine-rails/tree/v0.14.3) (2017-09-27)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.2...v0.14.3)
 
