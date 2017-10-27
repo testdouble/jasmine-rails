@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.14.7](https://github.com/searls/jasmine-rails/tree/v0.14.7) (2017-10-27)
+[Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.6...v0.14.7)
+
+**Merged pull requests:**
+
+- remove wrong workaround [\#225](https://github.com/searls/jasmine-rails/pull/225) ([fmachella](https://github.com/fmachella))
+
 ## [v0.14.6](https://github.com/searls/jasmine-rails/tree/v0.14.6) (2017-10-26)
 [Full Changelog](https://github.com/searls/jasmine-rails/compare/v0.14.5...v0.14.6)
 
