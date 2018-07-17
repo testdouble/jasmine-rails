@@ -1,6 +1,5 @@
 language: ruby
 rvm:
-  - 2.1
   - 2.3.0
 gemfile:
   - gemfiles/rails-3.2
@@ -18,18 +17,3 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 script: './run-tests.rb'
-
-matrix:
-  exclude:
-    - rvm: 2.3.0
-      gemfile: gemfiles/rails-3.2
-    - rvm: 2.3.0
-      gemfile: gemfiles/rails-4.0
-    - rvm: 2.3.0
-      gemfile: gemfiles/rails-4.0-jasmine-2
-    - rvm: 2.3.0
-      gemfile: gemfiles/rails-4.1
-    - rvm: 2.1
-      gemfile: gemfiles/rails-5.0
-    - rvm: 2.1
-      gemfile: gemfiles/rails-5-sprockets-4
