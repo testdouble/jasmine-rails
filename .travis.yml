@@ -8,6 +8,7 @@ gemfile:
   - gemfiles/rails-4.1
   - gemfiles/rails-5.0
   - gemfiles/rails-5-sprockets-4
+  - gemfiles/rails-5.2
 cache:
   directories:
     - /home/travis/.phantomjs
