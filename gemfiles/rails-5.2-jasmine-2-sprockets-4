@@ -2,17 +2,15 @@ source 'https://rubygems.org'
 
 gemspec path: File.expand_path('..', File.dirname(__FILE__))
 
-gem 'rails', '~> 5.2.0'
-gem 'bootsnap', require: false
+gem 'rails', '~> 5.0.0'
 gem 'puma'
-
+gem 'sprockets', '4.0.0.beta8'
 gem 'coffee-rails'
-gem 'sass-rails'
 
 gem 'jquery-rails'
 gem 'sqlite3'
 
-gem 'jasmine-core'
+gem 'jasmine-core', '~>2.0'
 
 group :development do
   gem 'listen'
