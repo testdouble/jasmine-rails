@@ -7,15 +7,22 @@ def run(cmd)
   raise "`#{cmd}` exited non-zero (#{$?}). Exiting." if $? != 0
 end
 
+def run_in_bundle(cmd)
+  gemfile_path = ENV['BUNDLE_GEMFILE'] || File.expand_path(File.join(__dir__, "Gemfile"))
+  # Make sure Bundler sees the project root's Gemfile when running inside ./example-app
+  run "BUNDLE_GEMFILE=#{gemfile_path} #{cmd}"
+end
+
 puts '<--- Creating app'
 run 'rm -rf example-app'
-run 'bundle exec rails new example-app --skip-gemfile --skip-bundle'
+run_in_bundle 'bundle install'
+run_in_bundle 'bundle exec rails new example-app --skip-gemfile --skip-bundle'
 Dir.chdir('example-app')
-run 'bundle exec rails plugin new engines/myengine --full --skip-gemspec'
+run_in_bundle 'bundle exec rails plugin new engines/myengine --full --skip-gemspec'
 FileUtils.mkdir_p 'engines/myengine/spec/javascripts'
 
 puts '<--- Preparing app'
-run 'rails g jasmine_rails:install'
+run_in_bundle "bundle exec rails g jasmine_rails:install"
 run 'rm "app/assets/javascripts/application.js"'
 run 'cp "../spec/javascripts/support/jasmine.yml" "./spec/javascripts/support"'
 
@@ -31,8 +38,7 @@ File.open("config/application.rb", "a+") do |f|
 end
 
 puts '<--- Running rake spec:javascript'
-run 'bundle exec rake spec:javascript'
+run_in_bundle 'bundle exec rake spec:javascript'
 
 puts '<--- Running browser spec'
-run 'bundle exec rspec ../spec/jasmine_spec.rb'
-
+run_in_bundle 'bundle exec rspec ../spec/jasmine_spec.rb'
