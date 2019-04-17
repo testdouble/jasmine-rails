@@ -2,13 +2,13 @@ language: ruby
 rvm:
   - 2.3.0
 gemfile:
-  - gemfiles/rails-3.2
-  - gemfiles/rails-4.0
-  - gemfiles/rails-4.0-jasmine-2
-  - gemfiles/rails-4.1
-  - gemfiles/rails-5.0
-  - gemfiles/rails-5-sprockets-4
-  - gemfiles/rails-5.2
+  - gemfiles/rails-3.2-jasmine-1
+  - gemfiles/rails-4.2-jasmine-1
+  - gemfiles/rails-4.2-jasmine-2
+  - gemfiles/rails-4.2-jasmine-3
+  - gemfiles/rails-5.2-jasmine-2
+  - gemfiles/rails-5.2-jasmine-2-sprockets-4
+  - gemfiles/rails-5.2-jasmine-3
 cache:
   directories:
     - /home/travis/.phantomjs
