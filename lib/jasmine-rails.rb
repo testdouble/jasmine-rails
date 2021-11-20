@@ -23,7 +23,7 @@ module JasmineRails
 
     def spec_dir
       paths = jasmine_config['spec_dir'] || 'spec/javascripts'
-      [paths].flatten.map { |path| Dir.glob path }.flatten.collect { |path| Rails.root.join(path) }
+      [paths].flatten.map { |path| Dir.glob(Rails.root.join(path)) }.flatten.collect { |path| Rails.root.join(path) }
     end
 
     def include_dir
