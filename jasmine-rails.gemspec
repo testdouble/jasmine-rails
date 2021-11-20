@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/searls/jasmine-rails"
   s.summary     = "Makes Jasmine easier on Rails 3.2 & up"
   s.description = "Provides a Jasmine Spec Runner that plays nicely with Rails 3.2 assets and sets up jasmine-headless-webkit"
+  s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
